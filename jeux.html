@@ -206,7 +206,7 @@
         #jokerpoker-shop-overlay {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
-            display: none; align-items: center; justify-content: center; flex-direction: column;
+            display: none; align-items: center; justify-content: center; flex-direction: column; z-index: 10;
         }
         #jokerpoker-shop-items { display: flex; gap: 1rem; margin-bottom: 1rem;}
         .jokerpoker-shop-item {
@@ -225,7 +225,7 @@
         <div class="container text-center">
             <h1>ARCADE</h1>
             <div class="row g-4 g-md-5 justify-content-center">
-                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="jokerpoker"><i class="bi bi-suit-club-fill"></i><h3>Balatro(en dev)</h3></div></div>
+                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="jokerpoker"><i class="bi bi-suit-club-fill"></i><h3>Joker Poker</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="tetris"><i class="bi bi-bricks"></i><h3>Tetris</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="pacman"><i class="bi bi-joystick"></i><h3>Pac-Man</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="snake"><i class="bi bi-bug-fill"></i><h3>Snake</h3></div></div>
@@ -257,7 +257,7 @@
                      <p>Argent: $<span id="jokerpoker-money">0</span></p>
                 </div>
                 <div class="jokerpoker-info-box">
-                    <h4>Score Total</h4>
+                    <h4>Score Actuel</h4>
                     <p><span id="jokerpoker-current-score">0</span></p>
                 </div>
                 <div id="jokerpoker-jokers-area"></div>
@@ -281,7 +281,9 @@
         </div>
     </div>
     
-    <!-- (Les autres conteneurs de jeux ne sont pas affichés pour la concision) -->
+    <!-- Tous les autres conteneurs de jeux seront ici -->
+    <!-- ... -->
+
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -297,9 +299,14 @@
 
         function showGame(gameId) {
             if (activeGameLoop) {
-                clearInterval(activeGameLoop); cancelAnimationFrame(activeGameLoop);
+                if (typeof activeGameLoop === 'number') { // requestAnimationFrame
+                    cancelAnimationFrame(activeGameLoop);
+                } else { // setInterval
+                    clearInterval(activeGameLoop);
+                }
                 activeGameLoop = null;
             }
+            
             gameSelectionScreen.style.display = 'none';
             backToMenuBtn.style.display = 'flex';
             gameContainers.forEach(container => container.style.display = 'none');
@@ -308,13 +315,19 @@
             if (activeContainer) {
                 activeContainer.style.display = 'flex';
                 const initFunctionName = `init${gameId.charAt(0).toUpperCase() + gameId.slice(1)}`;
-                if (window[initFunctionName]) window[initFunctionName]();
+                if (window[initFunctionName]) {
+                    window[initFunctionName]();
+                }
             }
         }
 
         function showMenu() {
             if (activeGameLoop) {
-                clearInterval(activeGameLoop); cancelAnimationFrame(activeGameLoop);
+                 if (typeof activeGameLoop === 'number') {
+                    cancelAnimationFrame(activeGameLoop);
+                } else {
+                    clearInterval(activeGameLoop);
+                }
                 activeGameLoop = null;
             }
             gameSelectionScreen.style.display = 'flex';
@@ -322,9 +335,8 @@
             gameContainers.forEach(container => container.style.display = 'none');
         }
 
-        // --- NOUVEAU JEU: JOKER POKER (BALATRO) ---
+        // --- JEU: JOKER POKER (BALATRO) ---
         const jokerPoker = {
-            // Éléments du DOM
             dom: {
                 targetScoreEl: document.getElementById('jokerpoker-target-score'),
                 currentScoreEl: document.getElementById('jokerpoker-current-score'),
@@ -342,8 +354,6 @@
                 shopItemsEl: document.getElementById('jokerpoker-shop-items'),
                 continueBtn: document.getElementById('jokerpoker-continue-btn'),
             },
-            
-            // Données du jeu
             deck: [], hand: [], selectedCards: [],
             ranks: "2,3,4,5,6,7,8,9,T,J,Q,K,A".split(","),
             suits: "♥,♦,♣,♠".split(","),
@@ -354,18 +364,14 @@
                 "Full": { chips: 60, multi: 7 }, "Carré": { chips: 80, multi: 8 }, "Quinte Flush": { chips: 100, multi: 10 },
             },
             blinds: [
-                { name: "Petit Blind", score: 300, reward: 3 },
-                { name: "Gros Blind", score: 600, reward: 4 },
-                { name: "Le Mur", score: 1200, reward: 5 },
+                { name: "Petit Blind", score: 300, reward: 3 }, { name: "Gros Blind", score: 800, reward: 4 }, { name: "Le Mur", score: 2000, reward: 5 },
             ],
             jokerDatabase: [
-                { name: "Joker Fou", desc: "+4 Multi", effect: (calc) => { calc.totalMulti += 4; } },
-                { name: "Le Glouton", desc: "+30 Jetons", effect: (calc) => { calc.totalChips += 30; } },
-                { name: "As de Pique", desc: "Les Piques donnent +20 Jetons", effect: (calc, hand) => { hand.forEach(c => { if(c.suit === '♠') calc.totalChips += 20; }); }},
-                { name: "Roi de Coeur", desc: "x2 Multi si main contient un Roi", effect: (calc, hand) => { if(hand.some(c=>c.rank === 'K')) calc.totalMulti *= 2; }}
+                { name: "Joker Fou", desc: "+4 Multi", cost: 3, effect: (calc) => { calc.totalMulti += 4; } },
+                { name: "Le Glouton", desc: "+40 Jetons", cost: 3, effect: (calc) => { calc.totalChips += 40; } },
+                { name: "As de Pique", desc: "Les Piques donnent +30 Jetons", cost: 4, effect: (calc, hand) => { hand.forEach(c => { if(c.suit === '♠') calc.totalChips += 30; }); }},
+                { name: "Roi de Coeur", desc: "x2 Multi si main contient un Roi", cost: 4, effect: (calc, hand) => { if(hand.some(c=>c.rank === 'K')) calc.totalMulti *= 2; }}
             ],
-            
-            // État du jeu
             state: {},
 
             init: function() {
@@ -376,30 +382,18 @@
             },
 
             startNewGame: function() {
-                this.state = {
-                    money: 0,
-                    currentBlindIndex: 0,
-                    jokers: [],
-                };
+                this.state = { money: 0, currentBlindIndex: 0, jokers: [] };
                 this.startBlind();
             },
             
             startBlind: function() {
                 const blind = this.blinds[this.state.currentBlindIndex];
-                this.state = {
-                    ...this.state,
-                    handsLeft: 4,
-                    discardsLeft: 3,
-                    currentScore: 0,
-                    targetScore: blind.score,
-                };
+                this.state = { ...this.state, handsLeft: 4, discardsLeft: 3, currentScore: 0, targetScore: blind.score };
                 this.dom.shopOverlay.style.display = 'none';
-                this.hand = [];
-                this.selectedCards = [];
-                this.createDeck();
-                this.drawHand(8);
-                this.updateUI();
-                this.toggleButtons(true);
+                this.dom.messageAreaEl.textContent = '';
+                this.hand = []; this.selectedCards = [];
+                this.createDeck(); this.drawHand(8);
+                this.updateUI(); this.toggleButtons(true);
             },
             
             createDeck: function() {
@@ -418,7 +412,7 @@
 
             renderHand: function() {
                 this.dom.handEl.innerHTML = '';
-                this.hand.forEach((card, index) => {
+                this.hand.forEach((card) => {
                     const cardEl = document.createElement('div');
                     cardEl.className = `jokerpoker-card ${card.suit === '♥' || card.suit === '♦' ? 'red' : ''}`;
                     cardEl.innerHTML = `<span class="jokerpoker-card-value">${card.rank}</span><span class="jokerpoker-card-suit">${card.suit}</span>`;
@@ -428,7 +422,7 @@
             },
             
             selectCard: function(cardEl, card) {
-                const cardIndex = this.selectedCards.findIndex(c => c === card);
+                const cardIndex = this.selectedCards.indexOf(card);
                 if (cardIndex > -1) {
                     this.selectedCards.splice(cardIndex, 1);
                     cardEl.classList.remove('selected');
@@ -447,7 +441,8 @@
                 const rankCounts = ranks.reduce((acc, v) => { acc[v] = (acc[v] || 0) + 1; return acc; }, {});
                 
                 const isFlush = new Set(suits).size === 1;
-                const isStraight = ranks.every((v, i, a) => i === 0 || v === a[i-1] + 1);
+                const isStraight = ranks.every((v, i, a) => i === 0 || v === a[i-1] + 1) || 
+                                   JSON.stringify(ranks) === JSON.stringify([2,3,4,5,14]); // Ace-low straight
                 const counts = Object.values(rankCounts);
                 
                 let handName = "Haute Carte";
@@ -465,10 +460,7 @@
                     totalChips: hand.reduce((sum, card) => sum + this.cardChips[card.rank], 0) + levelInfo.chips,
                     totalMulti: levelInfo.multi,
                 };
-
-                // Appliquer les effets des jokers
                 this.state.jokers.forEach(joker => joker.effect(calculation, hand));
-                
                 const finalScore = calculation.totalChips * calculation.totalMulti;
                 return { name: handName, chips: calculation.totalChips, multi: calculation.totalMulti, score: finalScore };
             },
@@ -492,8 +484,7 @@
                     this.hand = this.hand.filter(c => !this.selectedCards.includes(c));
                     this.drawHand(this.selectedCards.length);
                     this.selectedCards = [];
-                    this.updateUI();
-                    this.checkGameState();
+                    this.updateUI(); this.checkGameState();
                 }
             },
             
@@ -521,25 +512,23 @@
             showShop: function() {
                 this.dom.messageAreaEl.textContent = "";
                 this.dom.shopItemsEl.innerHTML = '';
-                // Proposer 2 jokers aléatoires
                 const availableJokers = [...this.jokerDatabase].sort(() => .5 - Math.random()).slice(0, 2);
                 availableJokers.forEach(joker => {
                     const itemEl = document.createElement('div');
                     itemEl.className = 'jokerpoker-shop-item';
-                    itemEl.innerHTML = `<div class="jokerpoker-joker"><h5>${joker.name}</h5><p>${joker.desc}</p></div><p class="mt-2">$3</p>`;
-                    if (this.state.money < 3) itemEl.style.opacity = '0.5';
-                    else itemEl.onclick = () => this.buyJoker(joker, 3);
+                    itemEl.innerHTML = `<div class="jokerpoker-joker"><h5>${joker.name}</h5><p>${joker.desc}</p></div><p class="mt-2">$${joker.cost}</p>`;
+                    if (this.state.money < joker.cost) itemEl.style.opacity = '0.5';
+                    else itemEl.onclick = () => this.buyJoker(joker);
                     this.dom.shopItemsEl.appendChild(itemEl);
                 });
                 this.dom.shopOverlay.style.display = 'flex';
             },
 
-            buyJoker: function(joker, cost) {
-                if (this.state.money >= cost && this.state.jokers.length < 5) {
-                    this.state.money -= cost;
+            buyJoker: function(joker) {
+                if (this.state.money >= joker.cost && this.state.jokers.length < 5) {
+                    this.state.money -= joker.cost;
                     this.state.jokers.push(joker);
-                    this.updateUI();
-                    this.showShop(); // Rafraîchir le magasin
+                    this.updateUI(); this.showShop();
                 }
             },
             
@@ -548,9 +537,7 @@
                 if (this.state.currentBlindIndex >= this.blinds.length) {
                     this.dom.messageAreaEl.textContent = "VOUS AVEZ GAGNÉ LE JEU !";
                     this.toggleButtons(false);
-                } else {
-                    this.startBlind();
-                }
+                } else { this.startBlind(); }
             },
 
             updateUI: function() {
@@ -566,6 +553,7 @@
                 this.state.jokers.forEach(j => {
                     this.dom.jokersAreaEl.innerHTML += `<div class="jokerpoker-joker"><h5>${j.name}</h5><p>${j.desc}</p></div>`;
                 });
+                if (this.state.jokers.length === 0) this.dom.jokersAreaEl.innerHTML = '<p style="font-size:0.7rem; color: #888;">Pas de Jokers</p>';
                 this.updateHandInfo();
             },
             
@@ -576,11 +564,11 @@
         };
         window.initJokerpoker = () => jokerPoker.init();
 
-        // --- (Les initialiseurs pour les autres jeux seront ici) ---
+        // --- Le code complet pour les 15 autres jeux sera ajouté ici ---
+        // Par exemple: window.initTetris = () => { ... }
 
     });
     </script>
 </body>
 </html>
-
 
