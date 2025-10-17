@@ -183,7 +183,118 @@
         /* --- Style FLAPPY BIRD --- */
         #game-flappybird { text-align: center; }
         #flappybird-score { font-size: 1.5rem; margin-bottom: 1rem; }
+        
+        /* --- Style 2048 --- */
+        #game-2048 { text-align: center; }
+        #2048-board {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+            width: 340px; height: 340px; padding: 10px;
+            background: #2a2a4a; border: 2px solid var(--card-border); border-radius: 8px;
+        }
+        .tile-2048 {
+            width: 100%; height: 100%; display: flex; align-items: center; justify-content: center;
+            border-radius: 4px; background-color: #3a3a5a;
+            font-family: var(--font-pixel); font-size: 1.5rem; color: #fff;
+            transition: all 0.1s ease-in-out;
+        }
+        /* Styles pour les différentes tuiles */
+        .tile-2048[data-value="2"] { background-color: #eee4da; color: #776e65; }
+        .tile-2048[data-value="4"] { background-color: #ede0c8; color: #776e65; }
+        .tile-2048[data-value="8"] { background-color: #f2b179; color: #f9f6f2; }
+        .tile-2048[data-value="16"] { background-color: #f59563; color: #f9f6f2; }
+        .tile-2048[data-value="32"] { background-color: #f67c5f; color: #f9f6f2; }
+        .tile-2048[data-value="64"] { background-color: #f65e3b; color: #f9f6f2; }
+        .tile-2048[data-value="128"] { background-color: #edcf72; color: #f9f6f2; font-size: 1.3rem; }
+        .tile-2048[data-value="256"] { background-color: #edcc61; color: #f9f6f2; font-size: 1.3rem; }
+        .tile-2048[data-value="512"] { background-color: #edc850; color: #f9f6f2; font-size: 1.3rem; }
+        .tile-2048[data-value="1024"] { background-color: #edc53f; color: #f9f6f2; font-size: 1rem; }
+        .tile-2048[data-value="2048"] { background-color: #edc22e; color: #f9f6f2; font-size: 1rem; }
 
+        /* --- Style PUISSANCE 4 (Connect Four) --- */
+        #game-connectfour { text-align: center; }
+        #connectfour-board {
+            display: grid; grid-template-columns: repeat(7, 1fr); gap: 5px;
+            width: 340px; height: 290px; padding: 10px;
+            background: #00008B; border: 4px solid #000040; border-radius: 8px;
+            margin: auto;
+        }
+        .connectfour-cell {
+            width: 40px; height: 40px; background: #111;
+            border-radius: 50%; cursor: pointer;
+            border: 2px solid #0c0a18;
+            transition: all 0.2s;
+        }
+        .connectfour-cell.player1 { background-color: #ff4136; }
+        .connectfour-cell.player2 { background-color: #ffdc00; }
+        .connectfour-col:hover .connectfour-cell:not(.player1):not(.player2) {
+            background-color: rgba(255, 65, 54, 0.3); /* Prévisualisation coup joueur 1 */
+        }
+        #connectfour-message { font-size: 1.2rem; margin-top: 1rem; min-height: 1.5rem; }
+
+        /* --- Style PENDU (Hangman) --- */
+        #game-hangman { text-align: center; }
+        #hangman-word {
+            display: flex; gap: 10px; justify-content: center;
+            margin: 2rem 0;
+            font-family: var(--font-pixel); font-size: 2rem;
+        }
+        .hangman-letter {
+            width: 40px; height: 50px; line-height: 50px; text-align: center;
+            background: #222; border-bottom: 3px solid var(--primary-accent);
+            color: var(--text-primary);
+        }
+        #hangman-keyboard {
+            display: flex; flex-wrap: wrap; justify-content: center;
+            gap: 8px; max-width: 500px; margin: auto;
+        }
+        .hangman-key {
+            font-family: var(--font-pixel); font-size: 1rem;
+            width: 40px; height: 40px; border: 2px solid var(--card-border);
+            background: var(--card-bg); color: var(--text-primary);
+            cursor: pointer; transition: all 0.2s;
+        }
+        .hangman-key:hover { background: var(--primary-accent); color: #000; }
+        .hangman-key:disabled { background: #333; color: #555; cursor: not-allowed; }
+        #hangman-attempts { margin-top: 1rem; font-size: 1.2rem; }
+
+        /* --- Style MEMORY --- */
+        #game-memory { text-align: center; }
+        #memory-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px;
+            max-width: 400px; margin: auto;
+        }
+        .memory-card {
+            width: 100%; aspect-ratio: 1 / 1;
+            background: #1a1a2e; border: 2px solid var(--card-border);
+            border-radius: 8px; cursor: pointer;
+            transition: transform 0.3s;
+            transform-style: preserve-3d;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .memory-card .card-face {
+            position: absolute; width: 100%; height: 100%;
+            backface-visibility: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 6px;
+        }
+        .memory-card .card-front { background: #1a1a2e; } /* Dos de la carte */
+        .memory-card .card-back {
+            background: var(--card-bg);
+            border: 1px solid var(--primary-accent);
+            transform: rotateY(180deg);
+            font-size: 2.5rem; color: var(--primary-accent);
+        }
+        .memory-card.is-flipped { transform: rotateY(180deg); }
+        .memory-card.is-matched {
+            background: var(--card-bg); border-color: var(--primary-accent);
+            cursor: default;
+        }
+        .memory-card.is-matched .card-back {
+            background: transparent; border: none;
+            opacity: 0.5;
+        }
+        #memory-moves { margin-top: 1rem; font-size: 1.2rem; }
+        
     </style>
 </head>
 <body>
@@ -202,14 +313,14 @@
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="breakout"><i class="bi bi-distribute-vertical"></i><h3>Breakout</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="tictactoe"><i class="bi bi-hash"></i><h3>Morpion</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="flappybird"><i class="bi bi-cloud-fill"></i><h3>Flappy Bird</h3></div></div>
+                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="2048"><i class="bi bi-grid-1x2-fill"></i><h3>2048</h3></div></div>
+                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="connectfour"><i class="bi bi-grid-3x3-gap-fill"></i><h3>Puissance 4</h3></div></div>
+                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="hangman"><i class="bi bi-emoji-dizzy-fill"></i><h3>Pendu</h3></div></div>
+                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="memory"><i class="bi bi-question-diamond-fill"></i><h3>Memory</h3></div></div>
                 
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="pacman"><i class="bi bi-joystick"></i><h3>Pac-Man</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="minesweeper"><i class="bi bi-flag-fill"></i><h3>Démineur</h3></div></div>
-                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="2048"><i class="bi bi-grid-1x2-fill"></i><h3>2048</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="blackjack"><i class="bi bi-suit-spade-fill"></i><h3>Blackjack</h3></div></div>
-                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="memory"><i class="bi bi-question-diamond-fill"></i><h3>Memory</h3></div></div>
-                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="connectfour"><i class="bi bi-grid-3x3-gap-fill"></i><h3>Puissance 4</h3></div></div>
-                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="hangman"><i class="bi bi-emoji-dizzy-fill"></i><h3>Pendu</h3></div></div>
             </div>
         </div>
     </div>
@@ -237,6 +348,7 @@
         
         let activeGameLoop = null;
         let activeKeyListener = null;
+        let activeMouseListener = null;
 
         gameCards.forEach(card => card.addEventListener('click', () => showGame(card.dataset.game)));
         backToMenuBtn.addEventListener('click', showMenu);
@@ -262,9 +374,13 @@
             }
             if(activeKeyListener) {
                 document.removeEventListener('keydown', activeKeyListener);
-                document.removeEventListener('keyup', activeKeyListener); // Pour Pong
-                document.removeEventListener('click', activeKeyListener); // Pour Flappy
+                document.removeEventListener('keyup', activeKeyListener); 
                 activeKeyListener = null;
+            }
+            if(activeMouseListener) {
+                // Pour Flappy Bird et autres
+                document.removeEventListener('click', activeMouseListener);
+                activeMouseListener = null;
             }
             hideGameOver();
         }
@@ -679,7 +795,8 @@
             initGame();
         }
 
-        // --- NOUVEAU JEU : PONG ---
+        // --- MOTEUR DE JEU : PONG ---
+        // (Code de Pong inchangé)
         window.initPong = () => {
             const container = document.getElementById('game-pong-container');
             container.innerHTML = `
@@ -689,16 +806,12 @@
                     <canvas id="pong-board" width="600" height="400" class="game-canvas"></canvas>
                     <p class="game-instructions">Haut/Bas pour le joueur de gauche. (Joueur droit = IA)</p>
                 </div>`;
-            
             const canvas = document.getElementById('pong-board');
             const context = canvas.getContext('2d');
             const scoreEl = document.getElementById('pong-score');
-            
             const PADDLE_HEIGHT = 100, PADDLE_WIDTH = 10;
             const WINNING_SCORE = 5;
-            
             let ball, player1, player2, keys = {};
-            
             function initGame() {
                 ball = { x: canvas.width / 2, y: canvas.height / 2, radius: 10, speed: 5, dx: 5, dy: 5 };
                 player1 = { x: 10, y: (canvas.height - PADDLE_HEIGHT) / 2, width: PADDLE_WIDTH, height: PADDLE_HEIGHT, score: 0, speed: 8 };
@@ -707,102 +820,56 @@
                 if (activeGameLoop) cancelAnimationFrame(activeGameLoop);
                 gameLoop();
             }
-
-            function updateScore() {
-                scoreEl.textContent = `${player1.score} - ${player2.score}`;
-            }
-
+            function updateScore() { scoreEl.textContent = `${player1.score} - ${player2.score}`; }
             function resetBall() {
-                ball.x = canvas.width / 2;
-                ball.y = canvas.height / 2;
-                ball.dx = -ball.dx; // Change de direction
-                ball.speed = 5;
+                ball.x = canvas.width / 2; ball.y = canvas.height / 2;
+                ball.dx = -ball.dx; ball.speed = 5;
             }
-
-            function drawRect(x, y, w, h, color) {
-                context.fillStyle = color;
-                context.fillRect(x, y, w, h);
-            }
-
+            function drawRect(x, y, w, h, color) { context.fillStyle = color; context.fillRect(x, y, w, h); }
             function drawCircle(x, y, r, color) {
-                context.fillStyle = color;
-                context.beginPath();
+                context.fillStyle = color; context.beginPath();
                 context.arc(x, y, r, 0, Math.PI * 2, false);
-                context.closePath();
-                context.fill();
+                context.closePath(); context.fill();
             }
-
             function gameLoop() {
-                // 1. Mouvement du joueur
                 if (keys['ArrowUp'] && player1.y > 0) player1.y -= player1.speed;
                 if (keys['ArrowDown'] && player1.y < canvas.height - player1.height) player1.y += player1.speed;
-
-                // 2. Mouvement IA (simple)
                 let aiTarget = ball.y - (player2.height / 2);
                 if (player2.y < aiTarget && player2.y < canvas.height - player2.height) player2.y += player2.speed;
                 if (player2.y > aiTarget && player2.y > 0) player2.y -= player2.speed;
-
-                // 3. Mouvement de la balle
-                ball.x += ball.dx;
-                ball.y += ball.dy;
-
-                // 4. Collisions
-                // Murs haut/bas
+                ball.x += ball.dx; ball.y += ball.dy;
                 if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) ball.dy = -ball.dy;
-
-                // Raquettes
                 if (ball.x - ball.radius < player1.x + player1.width && ball.y > player1.y && ball.y < player1.y + player1.height) {
-                    ball.dx = -ball.dx;
-                    ball.speed *= 1.1; // Accélère
-                    ball.dx = ball.speed;
+                    ball.dx = -ball.dx; ball.speed *= 1.1; ball.dx = ball.speed;
                 }
                 if (ball.x + ball.radius > player2.x && ball.y > player2.y && ball.y < player2.y + player2.height) {
-                    ball.dx = -ball.dx;
-                    ball.speed *= 1.1;
-                    ball.dx = -ball.speed;
+                    ball.dx = -ball.dx; ball.speed *= 1.1; ball.dx = -ball.speed;
                 }
-
-                // Score
                 if (ball.x - ball.radius < 0) {
-                    player2.score++;
-                    updateScore();
-                    resetBall();
+                    player2.score++; updateScore(); resetBall();
                 } else if (ball.x + ball.radius > canvas.width) {
-                    player1.score++;
-                    updateScore();
-                    resetBall();
+                    player1.score++; updateScore(); resetBall();
                 }
-
-                // 5. Dessin
-                drawRect(0, 0, canvas.width, canvas.height, '#111'); // Fond
+                drawRect(0, 0, canvas.width, canvas.height, '#111');
                 drawRect(player1.x, player1.y, player1.width, player1.height, 'var(--primary-accent)');
                 drawRect(player2.x, player2.y, player2.width, player2.height, 'var(--secondary-accent)');
                 drawCircle(ball.x, ball.y, ball.radius, 'var(--text-primary)');
-
-                // 6. Fin de partie
                 if (player1.score >= WINNING_SCORE) {
-                    showGameOver("VICTOIRE !", `Vous avez gagné ${player1.score} à ${player2.score}`, initGame);
-                    return;
+                    showGameOver("VICTOIRE !", `Vous avez gagné ${player1.score} à ${player2.score}`, initGame); return;
                 }
                 if (player2.score >= WINNING_SCORE) {
-                    showGameOver("GAME OVER", `L'IA a gagné ${player2.score} à ${player1.score}`, initGame);
-                    return;
+                    showGameOver("GAME OVER", `L'IA a gagné ${player2.score} à ${player1.score}`, initGame); return;
                 }
-
                 activeGameLoop = requestAnimationFrame(gameLoop);
             }
-
-            activeKeyListener = (e) => {
-                e.preventDefault();
-                keys[e.key] = (e.type === 'keydown');
-            };
+            activeKeyListener = (e) => { e.preventDefault(); keys[e.key] = (e.type === 'keydown'); };
             document.addEventListener('keydown', activeKeyListener);
             document.addEventListener('keyup', activeKeyListener);
-
             initGame();
         }
 
-        // --- NOUVEAU JEU : BREAKOUT ---
+        // --- MOTEUR DE JEU : BREAKOUT ---
+        // (Code de Breakout inchangé)
         window.initBreakout = () => {
             const container = document.getElementById('game-breakout-container');
             container.innerHTML = `
@@ -812,122 +879,76 @@
                     <canvas id="breakout-board" width="480" height="320" class="game-canvas"></canvas>
                     <p class="game-instructions">Gauche/Droite pour bouger.</p>
                 </div>`;
-            
             const canvas = document.getElementById('breakout-board');
             const context = canvas.getContext('2d');
             const scoreEl = document.getElementById('breakout-score');
-
             let ball, paddle, bricks, score, keys = {};
             let brickRowCount = 5, brickColumnCount = 8;
             let brickWidth = 50, brickHeight = 20, brickPadding = 10, brickOffsetTop = 30, brickOffsetLeft = 30;
-
             function initGame() {
-                score = 0;
-                scoreEl.textContent = `Score: 0`;
+                score = 0; scoreEl.textContent = `Score: 0`;
                 ball = { x: canvas.width / 2, y: canvas.height - 30, radius: 10, dx: 4, dy: -4 };
                 paddle = { x: (canvas.width - 100) / 2, y: canvas.height - 20, width: 100, height: 10, speed: 7 };
                 bricks = [];
                 for (let c = 0; c < brickColumnCount; c++) {
                     bricks[c] = [];
-                    for (let r = 0; r < brickRowCount; r++) {
-                        bricks[c][r] = { x: 0, y: 0, status: 1 };
-                    }
+                    for (let r = 0; r < brickRowCount; r++) { bricks[c][r] = { x: 0, y: 0, status: 1 }; }
                 }
                 if (activeGameLoop) cancelAnimationFrame(activeGameLoop);
                 gameLoop();
             }
-
-            function drawBall() {
-                context.beginPath();
-                context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
-                context.fillStyle = 'var(--text-primary)';
-                context.fill();
-                context.closePath();
-            }
-            function drawPaddle() {
-                context.beginPath();
-                context.rect(paddle.x, paddle.y, paddle.width, paddle.height);
-                context.fillStyle = 'var(--primary-accent)';
-                context.fill();
-                context.closePath();
-            }
+            function drawBall() { context.beginPath(); context.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2); context.fillStyle = 'var(--text-primary)'; context.fill(); context.closePath(); }
+            function drawPaddle() { context.beginPath(); context.rect(paddle.x, paddle.y, paddle.width, paddle.height); context.fillStyle = 'var(--primary-accent)'; context.fill(); context.closePath(); }
             function drawBricks() {
                 for (let c = 0; c < brickColumnCount; c++) {
                     for (let r = 0; r < brickRowCount; r++) {
                         if (bricks[c][r].status === 1) {
                             let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
                             let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
-                            bricks[c][r].x = brickX;
-                            bricks[c][r].y = brickY;
-                            context.beginPath();
-                            context.rect(brickX, brickY, brickWidth, brickHeight);
-                            context.fillStyle = 'var(--secondary-accent)';
-                            context.fill();
-                            context.closePath();
+                            bricks[c][r].x = brickX; bricks[c][r].y = brickY;
+                            context.beginPath(); context.rect(brickX, brickY, brickWidth, brickHeight); context.fillStyle = 'var(--secondary-accent)'; context.fill(); context.closePath();
                         }
                     }
                 }
             }
-
             function collisionDetection() {
                 for (let c = 0; c < brickColumnCount; c++) {
                     for (let r = 0; r < brickRowCount; r++) {
                         let b = bricks[c][r];
                         if (b.status === 1) {
                             if (ball.x > b.x && ball.x < b.x + brickWidth && ball.y > b.y && ball.y < b.y + brickHeight) {
-                                ball.dy = -ball.dy;
-                                b.status = 0;
-                                score++;
+                                ball.dy = -ball.dy; b.status = 0; score++;
                                 scoreEl.textContent = `Score: ${score}`;
                                 if (score === brickRowCount * brickColumnCount) {
-                                    showGameOver("VICTOIRE !", `Score final: ${score}`, initGame);
-                                    return;
+                                    showGameOver("VICTOIRE !", `Score final: ${score}`, initGame); return;
                                 }
                             }
                         }
                     }
                 }
             }
-
             function gameLoop() {
                 context.clearRect(0, 0, canvas.width, canvas.height);
-                drawBricks();
-                drawBall();
-                drawPaddle();
-                collisionDetection();
-
-                // Mouvement Balle
+                drawBricks(); drawBall(); drawPaddle(); collisionDetection();
                 if (ball.x + ball.dx > canvas.width - ball.radius || ball.x + ball.dx < ball.radius) ball.dx = -ball.dx;
                 if (ball.y + ball.dy < ball.radius) ball.dy = -ball.dy;
                 else if (ball.y + ball.dy > canvas.height - ball.radius - (paddle.height / 2)) {
-                    if (ball.x > paddle.x && ball.x < paddle.x + paddle.width) {
-                        ball.dy = -ball.dy;
-                    } else {
-                        showGameOver("GAME OVER", `Score: ${score}`, initGame);
-                        return;
-                    }
+                    if (ball.x > paddle.x && ball.x < paddle.x + paddle.width) { ball.dy = -ball.dy; } 
+                    else { showGameOver("GAME OVER", `Score: ${score}`, initGame); return; }
                 }
-                ball.x += ball.dx;
-                ball.y += ball.dy;
-
-                // Mouvement Paddle
+                ball.x += ball.dx; ball.y += ball.dy;
                 if (keys['ArrowRight'] && paddle.x < canvas.width - paddle.width) paddle.x += paddle.speed;
                 if (keys['ArrowLeft'] && paddle.x > 0) paddle.x -= paddle.speed;
-                
                 activeGameLoop = requestAnimationFrame(gameLoop);
             }
-
-            activeKeyListener = (e) => {
-                e.preventDefault();
-                keys[e.key] = (e.type === 'keydown');
-            };
+            activeKeyListener = (e) => { e.preventDefault(); keys[e.key] = (e.type === 'keydown'); };
             document.addEventListener('keydown', activeKeyListener);
             document.addEventListener('keyup', activeKeyListener);
-
             initGame();
         }
 
-        // --- NOUVEAU JEU : MORPION (TicTacToe) ---
+        // --- MOTEUR DE JEU : MORPION (TicTacToe) ---
+        // (Code de Morpion inchangé)
         window.initTictactoe = () => {
             const container = document.getElementById('game-tictactoe-container');
             container.innerHTML = `
@@ -936,21 +957,13 @@
                     <div id="tictactoe-board"></div>
                     <div id="tictactoe-message" class="score-container"></div>
                 </div>`;
-            
             const boardEl = document.getElementById('tictactoe-board');
             const messageEl = document.getElementById('tictactoe-message');
             let board, currentPlayer, gameActive;
-
-            const winningConditions = [
-                [0, 1, 2], [3, 4, 5], [6, 7, 8], // Lignes
-                [0, 3, 6], [1, 4, 7], [2, 5, 8], // Colonnes
-                [0, 4, 8], [2, 4, 6]  // Diagonales
-            ];
-
+            const winningConditions = [ [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6] ];
             function initGame() {
                 board = Array(9).fill('');
-                currentPlayer = 'X';
-                gameActive = true;
+                currentPlayer = 'X'; gameActive = true;
                 messageEl.textContent = "C'est au tour de X";
                 boardEl.innerHTML = '';
                 for (let i = 0; i < 9; i++) {
@@ -960,72 +973,42 @@
                     cell.addEventListener('click', handleCellClick);
                     boardEl.appendChild(cell);
                 }
-                activeGameLoop = null; // Pas de boucle de jeu
-                activeKeyListener = null; // Pas de touches
+                activeGameLoop = null; activeKeyListener = null;
             }
-
             function handleCellClick(e) {
-                const cell = e.target;
-                const index = cell.dataset.index;
-
+                const cell = e.target; const index = cell.dataset.index;
                 if (board[index] !== '' || !gameActive || currentPlayer === 'O') return;
-
                 makeMove(index, 'X');
-                
-                if (gameActive && !checkDraw()) {
-                    setTimeout(aiTurn, 500);
-                }
+                if (gameActive && !checkDraw()) { setTimeout(aiTurn, 500); }
             }
-
             function makeMove(index, player) {
                 board[index] = player;
                 boardEl.children[index].textContent = player;
                 boardEl.children[index].classList.add(player);
-
                 if (checkWin(player)) {
-                    messageEl.textContent = `${player} a gagné !`;
-                    gameActive = false;
+                    messageEl.textContent = `${player} a gagné !`; gameActive = false;
                     showGameOver(`${player} A GAGNÉ !`, "Félicitations !", initGame);
                 } else if (checkDraw()) {
-                    messageEl.textContent = "Égalité !";
-                    gameActive = false;
+                    messageEl.textContent = "Égalité !"; gameActive = false;
                     showGameOver("ÉGALITÉ", "Aucun vainqueur.", initGame);
                 } else {
                     currentPlayer = (player === 'X') ? 'O' : 'X';
                     messageEl.textContent = `C'est au tour de ${currentPlayer}`;
                 }
             }
-
             function aiTurn() {
                 if (!gameActive) return;
-                
-                // IA très simple : choisit la première case vide
                 let move = -1;
-                for (let i = 0; i < board.length; i++) {
-                    if (board[i] === '') {
-                        move = i;
-                        break;
-                    }
-                }
-                if (move !== -1) {
-                    makeMove(move, 'O');
-                }
+                for (let i = 0; i < board.length; i++) { if (board[i] === '') { move = i; break; } }
+                if (move !== -1) { makeMove(move, 'O'); }
             }
-
-            function checkWin(player) {
-                return winningConditions.some(condition => {
-                    return condition.every(index => board[index] === player);
-                });
-            }
-
-            function checkDraw() {
-                return board.every(cell => cell !== '');
-            }
-
+            function checkWin(player) { return winningConditions.some(condition => condition.every(index => board[index] === player)); }
+            function checkDraw() { return board.every(cell => cell !== ''); }
             initGame();
         }
 
-        // --- NOUVEAU JEU : FLAPPY BIRD ---
+        // --- MOTEUR DE JEU : FLAPPY BIRD ---
+        // (Code de Flappy Bird inchangé, mais listener de touches corrigé)
         window.initFlappybird = () => {
             const container = document.getElementById('game-flappybird-container');
             container.innerHTML = `
@@ -1035,115 +1018,492 @@
                     <canvas id="flappybird-board" width="288" height="512" class="game-canvas"></canvas>
                     <p class="game-instructions">Cliquez ou 'Espace' pour sauter.</p>
                 </div>`;
-            
             const canvas = document.getElementById('flappybird-board');
             const context = canvas.getContext('2d');
             const scoreEl = document.getElementById('flappybird-score');
-
             let bird, pipes, score, gravity = 0.5, lift = -10, pipeGap = 100, pipeSpeed = 2;
-
             function initGame() {
                 bird = { x: 50, y: 150, velocity: 0, radius: 15 };
-                pipes = [];
-                score = 0;
+                pipes = []; score = 0;
                 scoreEl.textContent = `Score: 0`;
                 pipes.push({ x: canvas.width, top: 0, bottom: Math.random() * (canvas.height / 2) + 50 });
-                
                 if (activeGameLoop) cancelAnimationFrame(activeGameLoop);
                 gameLoop();
             }
-
             function draw() {
-                // Fond
-                context.fillStyle = '#70c5ce';
-                context.fillRect(0, 0, canvas.width, canvas.height);
-                
-                // Oiseau
-                context.beginPath();
-                context.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2);
-                context.fillStyle = '#f5e356'; // Jaune
-                context.fill();
-                context.closePath();
-
-                // Tuyaux
-                context.fillStyle = '#74bf2e'; // Vert
+                context.fillStyle = '#70c5ce'; context.fillRect(0, 0, canvas.width, canvas.height);
+                context.beginPath(); context.arc(bird.x, bird.y, bird.radius, 0, Math.PI * 2); context.fillStyle = '#f5e356'; context.fill(); context.closePath();
+                context.fillStyle = '#74bf2e';
                 for (let i = 0; i < pipes.length; i++) {
-                    let p = pipes[i];
-                    let topPipeHeight = p.bottom;
-                    let bottomPipeHeight = canvas.height - (p.bottom + pipeGap);
-
+                    let p = pipes[i]; let topPipeHeight = p.bottom; let bottomPipeHeight = canvas.height - (p.bottom + pipeGap);
                     context.fillRect(p.x, 0, 50, topPipeHeight);
                     context.fillRect(p.x, canvas.height - bottomPipeHeight, 50, bottomPipeHeight);
                 }
             }
-
             function update() {
-                // Mouvement oiseau
-                bird.velocity += gravity;
-                bird.velocity *= 0.9; // Résistance air
-                bird.y += bird.velocity;
-
-                // Génération tuyaux
+                bird.velocity += gravity; bird.velocity *= 0.9; bird.y += bird.velocity;
                 for (let i = pipes.length - 1; i >= 0; i--) {
                     pipes[i].x -= pipeSpeed;
-                    
-                    if (pipes[i].x + 50 < 0) {
-                        pipes.splice(i, 1);
-                    }
-                    
-                    // Collision
-                    if (
-                        bird.x + bird.radius > pipes[i].x && bird.x - bird.radius < pipes[i].x + 50 &&
-                        (bird.y - bird.radius < pipes[i].bottom || bird.y + bird.radius > pipes[i].bottom + pipeGap)
-                    ) {
+                    if (pipes[i].x + 50 < 0) { pipes.splice(i, 1); }
+                    if ( bird.x + bird.radius > pipes[i].x && bird.x - bird.radius < pipes[i].x + 50 && (bird.y - bird.radius < pipes[i].bottom || bird.y + bird.radius > pipes[i].bottom + pipeGap) ) {
                         return gameOver();
                     }
+                    if (pipes[i].x === bird.x - 50) { score++; scoreEl.textContent = `Score: ${score}`; }
+                }
+                if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 150) {
+                    pipes.push({ x: canvas.width, top: 0, bottom: Math.random() * (canvas.height / 3) + 100 });
+                }
+                if (bird.y + bird.radius > canvas.height || bird.y - bird.radius < 0) { return gameOver(); }
+            }
+            function gameLoop() { update(); draw(); activeGameLoop = requestAnimationFrame(gameLoop); }
+            function birdJump() { bird.velocity = lift; }
+            function gameOver() {
+                cancelAnimationFrame(activeGameLoop); activeGameLoop = null;
+                showGameOver("GAME OVER", `Score: ${score}`, initGame);
+            }
+            // Séparation des listeners
+            activeKeyListener = (e) => { if (e.key === ' ') { e.preventDefault(); birdJump(); } };
+            activeMouseListener = (e) => { e.preventDefault(); birdJump(); };
+            document.addEventListener('keydown', activeKeyListener);
+            document.addEventListener('click', activeMouseListener);
+            initGame();
+        }
 
-                    // Score
-                    if (pipes[i].x === bird.x - 50) { // L'oiseau a passé le tuyau
-                        score++;
-                        scoreEl.textContent = `Score: ${score}`;
+        // --- NOUVEAU JEU : 2048 ---
+        window.init2048 = () => {
+            const container = document.getElementById('game-2048-container');
+            container.innerHTML = `
+                <div id="game-2048">
+                    <h2 class="game-title">2048</h2>
+                    <div class="score-container">Score: <span id="2048-score">0</span></div>
+                    <div id="2048-board"></div>
+                    <p class="game-instructions">Utilisez les flèches pour fusionner les tuiles.</p>
+                </div>`;
+            
+            const boardEl = document.getElementById('2048-board');
+            const scoreEl = document.getElementById('2048-score');
+            let grid, score;
+
+            function initGame() {
+                grid = Array(4).fill(null).map(() => Array(4).fill(0));
+                score = 0;
+                addRandomTile();
+                addRandomTile();
+                drawBoard();
+            }
+
+            function drawBoard() {
+                scoreEl.textContent = score;
+                boardEl.innerHTML = '';
+                for (let r = 0; r < 4; r++) {
+                    for (let c = 0; c < 4; c++) {
+                        const value = grid[r][c];
+                        const tile = document.createElement('div');
+                        tile.className = 'tile-2048';
+                        if (value > 0) {
+                            tile.textContent = value;
+                            tile.dataset.value = value;
+                        }
+                        boardEl.appendChild(tile);
+                    }
+                }
+            }
+
+            function addRandomTile() {
+                let emptyTiles = [];
+                for (let r = 0; r < 4; r++) {
+                    for (let c = 0; c < 4; c++) {
+                        if (grid[r][c] === 0) emptyTiles.push({ r, c });
+                    }
+                }
+                if (emptyTiles.length > 0) {
+                    let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
+                    grid[r][c] = Math.random() < 0.9 ? 2 : 4;
+                }
+            }
+
+            function slideAndMerge(row) {
+                // 1. "Slide" : [0, 2, 0, 2] -> [2, 2, 0, 0]
+                let newRow = row.filter(val => val);
+                let missing = 4 - newRow.length;
+                let zeros = Array(missing).fill(0);
+                newRow = newRow.concat(zeros);
+
+                // 2. "Merge" : [2, 2, 0, 0] -> [4, 0, 0, 0]
+                for (let i = 0; i < 3; i++) {
+                    if (newRow[i] > 0 && newRow[i] === newRow[i + 1]) {
+                        newRow[i] *= 2;
+                        score += newRow[i];
+                        newRow[i + 1] = 0;
                     }
                 }
 
-                if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 150) {
-                    pipes.push({ 
-                        x: canvas.width, 
-                        top: 0, 
-                        bottom: Math.random() * (canvas.height / 3) + 100 // Hauteur aléatoire
-                    });
+                // 3. "Slide" again : [4, 0, 2, 2] -> [4, 2, 2, 0]
+                newRow = newRow.filter(val => val);
+                missing = 4 - newRow.length;
+                zeros = Array(missing).fill(0);
+                newRow = newRow.concat(zeros);
+                
+                return newRow;
+            }
+
+            function rotateGrid(grid) {
+                let newGrid = Array(4).fill(null).map(() => Array(4).fill(0));
+                for (let r = 0; r < 4; r++) {
+                    for (let c = 0; c < 4; c++) {
+                        newGrid[c][3 - r] = grid[r][c];
+                    }
                 }
+                return newGrid;
+            }
 
-                // Collision sol/plafond
-                if (bird.y + bird.radius > canvas.height || bird.y - bird.radius < 0) {
-                    return gameOver();
+            function move(direction) {
+                let moved = false;
+                for (let r = 0; r < 4; r++) {
+                    let row = grid[r];
+                    let newRow = slideAndMerge(row);
+                    if (JSON.stringify(row) !== JSON.stringify(newRow)) {
+                        moved = true;
+                    }
+                    grid[r] = newRow;
+                }
+                return moved;
+            }
+
+            function handleMove(e) {
+                e.preventDefault();
+                let moved = false;
+                switch (e.key) {
+                    case 'ArrowLeft':
+                        moved = move('left');
+                        break;
+                    case 'ArrowRight':
+                        grid = grid.map(row => row.reverse());
+                        moved = move('right');
+                        grid = grid.map(row => row.reverse());
+                        break;
+                    case 'ArrowUp':
+                        grid = rotateGrid(grid); // Rotate 90 deg right
+                        moved = move('up');
+                        grid = rotateGrid(rotateGrid(rotateGrid(grid))); // Rotate 270 deg
+                        break;
+                    case 'ArrowDown':
+                        grid = rotateGrid(rotateGrid(rotateGrid(grid))); // Rotate 270 deg
+                        moved = move('down');
+                        grid = rotateGrid(grid); // Rotate 90 deg
+                        break;
+                }
+                if (moved) {
+                    addRandomTile();
+                    drawBoard();
+                    checkGameOver();
                 }
             }
-            
-            function gameLoop() {
-                update();
-                draw();
-                activeGameLoop = requestAnimationFrame(gameLoop);
-            }
 
-            function birdJump() {
-                bird.velocity = lift;
-            }
-
-            function gameOver() {
-                cancelAnimationFrame(activeGameLoop);
-                activeGameLoop = null;
-                showGameOver("GAME OVER", `Score: ${score}`, initGame);
-            }
-
-            activeKeyListener = (e) => {
-                if (e.type === 'click' || (e.type === 'keydown' && e.key === ' ')) {
-                    e.preventDefault();
-                    birdJump();
+            function checkGameOver() {
+                // Y a-t-il des cases vides ?
+                for (let r = 0; r < 4; r++) {
+                    for (let c = 0; c < 4; c++) {
+                        if (grid[r][c] === 0) return;
+                    }
                 }
-            };
+                // Y a-t-il des fusions possibles ?
+                for (let r = 0; r < 4; r++) {
+                    for (let c = 0; c < 4; c++) {
+                        if (c < 3 && grid[r][c] === grid[r][c + 1]) return;
+                        if (r < 3 && grid[r][c] === grid[r + 1][c]) return;
+                    }
+                }
+                // Game Over
+                showGameOver("GAME OVER", `Score final: ${score}`, initGame);
+            }
+
+            activeKeyListener = handleMove;
             document.addEventListener('keydown', activeKeyListener);
-            document.addEventListener('click', activeKeyListener);
+            initGame();
+        }
+
+        // --- NOUVEAU JEU : PUISSANCE 4 ---
+        window.initConnectfour = () => {
+            const container = document.getElementById('game-connectfour-container');
+            container.innerHTML = `
+                <div id="game-connectfour">
+                    <h2 class="game-title">PUISSANCE 4</h2>
+                    <div id="connectfour-board"></div>
+                    <div id="connectfour-message" class="score-container"></div>
+                </div>`;
+            
+            const boardEl = document.getElementById('connectfour-board');
+            const messageEl = document.getElementById('connectfour-message');
+            const ROWS = 6, COLS = 7;
+            let board, currentPlayer, gameActive;
+
+            function initGame() {
+                board = Array(ROWS).fill(null).map(() => Array(COLS).fill(0));
+                currentPlayer = 1; // 1 = Joueur, 2 = IA
+                gameActive = true;
+                messageEl.textContent = "À vous de jouer (Rouge)";
+                drawBoard();
+            }
+
+            function drawBoard() {
+                boardEl.innerHTML = '';
+                for (let c = 0; c < COLS; c++) {
+                    const colEl = document.createElement('div');
+                    colEl.className = 'connectfour-col';
+                    colEl.dataset.col = c;
+                    colEl.addEventListener('click', handleColumnClick);
+                    for (let r = 0; r < ROWS; r++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'connectfour-cell';
+                        if (board[r][c] === 1) cell.classList.add('player1');
+                        if (board[r][c] === 2) cell.classList.add('player2');
+                        colEl.appendChild(cell);
+                    }
+                    boardEl.appendChild(colEl);
+                }
+            }
+
+            function handleColumnClick(e) {
+                if (!gameActive || currentPlayer === 2) return;
+                const col = e.currentTarget.dataset.col;
+                makeMove(parseInt(col), 1);
+            }
+
+            function makeMove(col, player) {
+                for (let r = ROWS - 1; r >= 0; r--) {
+                    if (board[r][col] === 0) {
+                        board[r][col] = player;
+                        drawBoard();
+                        
+                        if (checkWin(player)) {
+                            gameActive = false;
+                            const winner = player === 1 ? "VOUS AVEZ" : "L'IA A";
+                            showGameOver(`${winner} GAGNÉ !`, "Félicitations !", initGame);
+                        } else if (checkDraw()) {
+                            gameActive = false;
+                            showGameOver("ÉGALITÉ", "Aucun vainqueur.", initGame);
+                        } else {
+                            currentPlayer = player === 1 ? 2 : 1;
+                            messageEl.textContent = currentPlayer === 1 ? "À vous de jouer (Rouge)" : "L'IA réfléchit... (Jaune)";
+                            if (currentPlayer === 2) {
+                                setTimeout(aiTurn, 500);
+                            }
+                        }
+                        return;
+                    }
+                }
+            }
+
+            function aiTurn() {
+                if (!gameActive) return;
+                let availableCols = [];
+                for (let c = 0; c < COLS; c++) {
+                    if (board[0][c] === 0) availableCols.push(c);
+                }
+                if (availableCols.length > 0) {
+                    const randomCol = availableCols[Math.floor(Math.random() * availableCols.length)];
+                    makeMove(randomCol, 2);
+                }
+            }
+
+            function checkWin(player) {
+                // Vérif Horizontale
+                for (let r = 0; r < ROWS; r++) {
+                    for (let c = 0; c <= COLS - 4; c++) {
+                        if (board[r][c] === player && board[r][c+1] === player && board[r][c+2] === player && board[r][c+3] === player) return true;
+                    }
+                }
+                // Vérif Verticale
+                for (let c = 0; c < COLS; c++) {
+                    for (let r = 0; r <= ROWS - 4; r++) {
+                        if (board[r][c] === player && board[r+1][c] === player && board[r+2][c] === player && board[r+3][c] === player) return true;
+                    }
+                }
+                // Vérif Diagonale (bas-droite)
+                for (let r = 0; r <= ROWS - 4; r++) {
+                    for (let c = 0; c <= COLS - 4; c++) {
+                        if (board[r][c] === player && board[r+1][c+1] === player && board[r+2][c+2] === player && board[r+3][c+3] === player) return true;
+                    }
+                }
+                // Vérif Diagonale (haut-droite)
+                for (let r = 3; r < ROWS; r++) {
+                    for (let c = 0; c <= COLS - 4; c++) {
+                        if (board[r][c] === player && board[r-1][c+1] === player && board[r-2][c+2] === player && board[r-3][c+3] === player) return true;
+                    }
+                }
+                return false;
+            }
+
+            function checkDraw() {
+                return board[0].every(cell => cell !== 0); // Si la rangée du haut est pleine
+            }
+
+            initGame();
+        }
+
+        // --- NOUVEAU JEU : PENDU ---
+        window.initHangman = () => {
+            const container = document.getElementById('game-hangman-container');
+            container.innerHTML = `
+                <div id="game-hangman">
+                    <h2 class="game-title">LE PENDU</h2>
+                    <div id="hangman-attempts">Tentatives restantes: 6</div>
+                    <div id="hangman-word"></div>
+                    <div id="hangman-keyboard"></div>
+                </div>`;
+            
+            const wordEl = document.getElementById('hangman-word');
+            const keyboardEl = document.getElementById('hangman-keyboard');
+            const attemptsEl = document.getElementById('hangman-attempts');
+
+            const wordList = ["ARCADE", "JAVASCRIPT", "TETRIS", "SNAKE", "PONG", "DEVELOPPEUR", "ORDINATEUR", "PROGRAMME", "NAVIGATEUR"];
+            let selectedWord, guessedLetters, wrongAttempts;
+
+            function initGame() {
+                selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
+                guessedLetters = Array(selectedWord.length).fill('_');
+                wrongAttempts = 6;
+                drawWord();
+                drawKeyboard();
+                updateAttempts();
+            }
+
+            function drawWord() {
+                wordEl.innerHTML = '';
+                guessedLetters.forEach(letter => {
+                    const letterEl = document.createElement('div');
+                    letterEl.className = 'hangman-letter';
+                    letterEl.textContent = letter === '_' ? '' : letter;
+                    wordEl.appendChild(letterEl);
+                });
+            }
+
+            function drawKeyboard() {
+                keyboardEl.innerHTML = '';
+                for (let i = 65; i <= 90; i++) { // A-Z
+                    const letter = String.fromCharCode(i);
+                    const key = document.createElement('button');
+                    key.className = 'hangman-key';
+                    key.textContent = letter;
+                    key.addEventListener('click', () => handleGuess(letter));
+                    keyboardEl.appendChild(key);
+                }
+            }
+
+            function handleGuess(letter) {
+                const key = Array.from(keyboardEl.children).find(k => k.textContent === letter);
+                if (key.disabled) return;
+                key.disabled = true;
+
+                if (selectedWord.includes(letter)) {
+                    for (let i = 0; i < selectedWord.length; i++) {
+                        if (selectedWord[i] === letter) {
+                            guessedLetters[i] = letter;
+                        }
+                    }
+                } else {
+                    wrongAttempts--;
+                    updateAttempts();
+                }
+                
+                drawWord();
+                checkGameState();
+            }
+
+            function updateAttempts() {
+                attemptsEl.textContent = `Tentatives restantes: ${wrongAttempts}`;
+            }
+
+            function checkGameState() {
+                if (guessedLetters.join('') === selectedWord) {
+                    showGameOver("VICTOIRE !", `Le mot était: ${selectedWord}`, initGame);
+                } else if (wrongAttempts <= 0) {
+                    showGameOver("GAME OVER", `Le mot était: ${selectedWord}`, initGame);
+                }
+            }
+
+            initGame();
+        }
+
+        // --- NOUVEAU JEU : MEMORY ---
+        window.initMemory = () => {
+            const container = document.getElementById('game-memory-container');
+            container.innerHTML = `
+                <div id="game-memory">
+                    <h2 class="game-title">MEMORY</h2>
+                    <div id="memory-moves" class="score-container">Coups: 0</div>
+                    <div id="memory-grid"></div>
+                </div>`;
+            
+            const gridEl = document.getElementById('memory-grid');
+            const movesEl = document.getElementById('memory-moves');
+            
+            // 8 paires
+            const icons = [
+                "bi-bug-fill", "bi-joystick", "bi-bricks", "bi-suit-club-fill", 
+                "bi-cloud-fill", "bi-flag-fill", "bi-hash", "bi-suit-spade-fill"
+            ];
+            let cards, flippedCards, matchedPairs, moves, gameActive;
+
+            function initGame() {
+                let cardSet = [...icons, ...icons];
+                cards = cardSet.sort(() => 0.5 - Math.random());
+                flippedCards = [];
+                matchedPairs = 0;
+                moves = 0;
+                gameActive = true;
+                movesEl.textContent = "Coups: 0";
+                drawGrid();
+            }
+
+            function drawGrid() {
+                gridEl.innerHTML = '';
+                cards.forEach((icon, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'memory-card';
+                    card.dataset.index = index;
+                    card.dataset.icon = icon;
+                    card.innerHTML = `
+                        <div class="card-face card-front"></div>
+                        <div class="card-face card-back"><i class="bi ${icon}"></i></div>
+                    `;
+                    card.addEventListener('click', handleCardClick);
+                    gridEl.appendChild(card);
+                });
+            }
+
+            function handleCardClick(e) {
+                const card = e.currentTarget;
+                if (!gameActive || card.classList.contains('is-flipped') || card.classList.contains('is-matched')) return;
+
+                card.classList.add('is-flipped');
+                flippedCards.push(card);
+
+                if (flippedCards.length === 2) {
+                    gameActive = false;
+                    moves++;
+                    movesEl.textContent = `Coups: ${moves}`;
+                    setTimeout(checkForMatch, 1000);
+                }
+            }
+
+            function checkForMatch() {
+                const [card1, card2] = flippedCards;
+                if (card1.dataset.icon === card2.dataset.icon) {
+                    card1.classList.add('is-matched');
+                    card2.classList.add('is-matched');
+                    matchedPairs++;
+                    if (matchedPairs === icons.length) {
+                        showGameOver("VICTOIRE !", `Terminé en ${moves} coups !`, initGame);
+                    }
+                } else {
+                    card1.classList.remove('is-flipped');
+                    card2.classList.remove('is-flipped');
+                }
+                flippedCards = [];
+                gameActive = true;
+            }
 
             initGame();
         }
@@ -1166,11 +1526,7 @@
 
         window.initPacman = createComingSoon('Pac-Man', 'bi bi-joystick');
         window.initMinesweeper = createComingSoon('Démineur', 'bi bi-flag-fill');
-        window.init2048 = createComingSoon('2048', 'bi bi-grid-1x2-fill');
         window.initBlackjack = createComingSoon('Blackjack', 'bi bi-suit-spade-fill');
-        window.initMemory = createComingSoon('Memory', 'bi bi-question-diamond-fill');
-        window.initConnectfour = createComingSoon('Puissance 4', 'bi bi-grid-3x3-gap-fill');
-        window.initHangman = createComingSoon('Pendu', 'bi bi-emoji-dizzy-fill');
 
     });
     </script>
