@@ -39,25 +39,20 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 2rem 1rem; /* Padding ajusté pour mobile */
+            padding: 2rem 1rem;
             animation: fadeIn 0.5s ease-in-out;
         }
 
-        .game-container {
-            display: none; /* Caché par défaut */
-        }
+        .game-container { display: none; }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         /* --- Écran de sélection des jeux --- */
         #game-selection-screen h1 {
             font-family: var(--font-pixel);
             color: var(--primary-accent);
             text-shadow: 0 0 10px var(--primary-accent), 0 0 20px var(--secondary-accent);
-            font-size: clamp(1.8rem, 8vw, 3rem); /* Taille de police responsive */
+            font-size: clamp(1.8rem, 8vw, 3rem);
             margin-bottom: 3rem;
         }
 
@@ -80,7 +75,7 @@
         }
 
         .game-card i {
-            font-size: 3rem; /* Icônes plus petites sur mobile par défaut */
+            font-size: 3rem;
             color: var(--primary-accent);
             margin-bottom: 1rem;
         }
@@ -92,21 +87,12 @@
 
         /* --- Boutons de navigation --- */
         .back-button {
-            position: fixed;
-            top: 15px;
-            left: 15px;
-            z-index: 1000;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: fixed; top: 15px; left: 15px; z-index: 1000;
+            border-radius: 50%; width: 45px; height: 45px;
+            display: flex; align-items: center; justify-content: center;
             background-color: rgba(255, 255, 255, 0.1);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            color: white;
-            transition: all 0.3s ease;
-            text-decoration: none;
+            color: white; transition: all 0.3s ease; text-decoration: none;
         }
 
         .back-button:hover {
@@ -114,94 +100,127 @@
             color: var(--background-color);
         }
 
-        /* --- Style des jeux --- */
+        /* --- Style générique des jeux --- */
         .game-title {
-            font-family: var(--font-pixel);
-            color: var(--primary-accent);
-            margin-bottom: 2rem;
-            text-align: center;
-            font-size: 1.5rem;
+            font-family: var(--font-pixel); color: var(--primary-accent);
+            margin-bottom: 2rem; text-align: center; font-size: 1.5rem;
         }
         
         .game-btn {
-            font-family: var(--font-pixel);
-            font-size: 0.7rem;
-            padding: 0.7rem 1.2rem;
-            border-radius: 8px;
-            border: 2px solid var(--primary-accent);
-            background: transparent;
-            color: var(--primary-accent);
-            transition: all 0.3s ease;
+            font-family: var(--font-pixel); font-size: 0.7rem; padding: 0.7rem 1.2rem;
+            border-radius: 8px; border: 2px solid var(--primary-accent);
+            background: transparent; color: var(--primary-accent); transition: all 0.3s ease;
         }
         .game-btn:hover:not(:disabled) {
-            background: var(--primary-accent);
-            color: var(--background-color);
+            background: var(--primary-accent); color: var(--background-color);
             box-shadow: 0 0 15px var(--primary-accent);
         }
-        .game-btn:disabled {
-            border-color: #555;
-            color: #555;
-            cursor: not-allowed;
-        }
+        .game-btn:disabled { border-color: #555; color: #555; cursor: not-allowed; }
         
         .game-canvas {
-            background-color: #111;
-            border: 2px solid var(--primary-accent);
+            background-color: #111; border: 2px solid var(--primary-accent);
             box-shadow: 0 0 15px var(--primary-accent);
-            max-width: 100%; /* Rendre le canvas responsive */
-            height: auto;
+            max-width: 100%; height: auto;
         }
         
         .score-container { font-size: 1.2rem; margin-bottom: 1rem; }
 
-        /* --- JEU: Balatro-like (Joker Poker) --- */
-        #game-jokerpoker { max-width: 800px; width:100%; text-align: center;}
-        .jokerpoker-stats { display: flex; justify-content: space-around; font-family: var(--font-pixel); font-size: 0.7rem; margin-bottom: 1rem; flex-wrap: wrap; }
-        .jokerpoker-jokers { margin-bottom: 1rem; font-family: var(--font-sans); font-weight: bold;}
-        .jokerpoker-joker { display: inline-block; padding: 0.5rem; border: 1px solid var(--secondary-accent); border-radius: 5px; margin: 0 5px; background: rgba(255,0,193,0.1); }
-        .jokerpoker-hand { min-height: 100px; display: flex; justify-content: center; gap: 5px; flex-wrap: wrap; margin-bottom: 1rem;}
+        /* --- NOUVEAU STYLE: JEU BALATRO (JOKER POKER) --- */
+        #game-jokerpoker-container {
+            background-color: #1a1a2e; /* Fond sombre de Balatro */
+            position: relative;
+        }
+        #game-jokerpoker-container::before { /* Effet CRT Scanlines */
+            content: ""; position: absolute; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+            background-size: 100% 3px; pointer-events: none; z-index: 1;
+        }
+
+        #game-jokerpoker { max-width: 900px; width:100%; text-align: center; position: relative; z-index: 2;}
+        .jokerpoker-ui-grid {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 1rem;
+            font-family: var(--font-pixel);
+            font-size: 0.7rem;
+            margin-bottom: 1rem;
+            color: #fff;
+        }
+        .jokerpoker-info-box {
+            background: #16213e;
+            border: 2px solid #0f3460;
+            padding: 0.5rem;
+            border-radius: 8px;
+            text-align: left;
+        }
+        .jokerpoker-info-box h4 { font-size: 0.8rem; color: var(--secondary-accent); margin-bottom: 0.5rem;}
+        .jokerpoker-info-box p { margin-bottom: 0.2rem; }
+        .jokerpoker-info-box span { color: var(--primary-accent); }
+
+        #jokerpoker-jokers-area {
+            grid-column: span 3;
+            background: #16213e;
+            border: 2px solid #0f3460;
+            min-height: 80px;
+            border-radius: 8px;
+            padding: 0.5rem;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .jokerpoker-joker {
+            background: #e94560; color: #fff;
+            padding: 0.5rem; border-radius: 5px;
+            font-family: var(--font-sans); text-align: center;
+            border: 2px solid #a42c3e;
+            width: 90px;
+        }
+        .jokerpoker-joker h5 { font-size: 0.8rem; font-weight: bold; margin-bottom: 0.2rem;}
+        .jokerpoker-joker p { font-size: 0.7rem; line-height: 1.2; }
+
+        #jokerpoker-hand { min-height: 120px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 1.5rem 0;}
         .jokerpoker-card {
-            width: 70px; height: 100px;
-            border-radius: 5px; background: white; color: black;
-            border: 2px solid #333; cursor: pointer;
+            width: 80px; height: 110px;
+            border-radius: 8px; background: #fff; color: #000;
+            border: 2px solid #aaa; cursor: pointer;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
             transition: all 0.2s ease; position: relative;
             display: flex; flex-direction: column; justify-content: space-between; padding: 5px;
         }
-        .jokerpoker-card.selected { transform: translateY(-15px); border-color: var(--primary-accent); }
-        .jokerpoker-card-value { font-size: 1.2rem; font-weight: bold; align-self: flex-start; }
-        .jokerpoker-card-suit { font-size: 1.2rem; align-self: flex-end; }
-        .jokerpoker-card.red { color: red; }
+        .jokerpoker-card.selected { transform: translateY(-20px); border-color: var(--primary-accent); box-shadow: 0 10px 15px var(--primary-accent);}
+        .jokerpoker-card-value { font-size: 1.5rem; font-weight: bold; align-self: flex-start; }
+        .jokerpoker-card-suit { font-size: 1.5rem; align-self: flex-end; }
+        .jokerpoker-card.red { color: #d63031; }
+
         #jokerpoker-play-area { margin-top: 1rem; text-align: center; }
-        #jokerpoker-hand-info { font-size: 1.2rem; min-height: 50px; font-weight: bold; }
+        #jokerpoker-hand-info { 
+            background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px;
+            font-size: 1.2rem; min-height: 60px; font-weight: bold; 
+            display: flex; align-items: center; justify-content: center; gap: 20px;
+            margin-bottom: 1rem;
+        }
         #jokerpoker-hand-name { color: var(--primary-accent); font-family: var(--font-pixel); font-size: 1rem;}
         #jokerpoker-hand-score { color: var(--text-primary); font-size: 1.2rem;}
 
-        /* --- JEU: Tetris --- */
-        #game-tetris { display: flex; gap: 20px; align-items: flex-start; flex-wrap: wrap; justify-content:center;}
-        #tetris-board { border: 2px solid var(--primary-accent); }
-        #tetris-sidebar { text-align: left; }
-
-        /* --- Styles responsives généraux --- */
-        @media (max-width: 767.98px) {
-            .game-card h3 { font-size: 0.7rem; }
-            .jokerpoker-card { width: 50px; height: 70px; }
-            .jokerpoker-card-value, .jokerpoker-card-suit { font-size: 1rem; }
+        #jokerpoker-shop-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(5px);
+            display: none; align-items: center; justify-content: center; flex-direction: column;
         }
+        #jokerpoker-shop-items { display: flex; gap: 1rem; margin-bottom: 1rem;}
+        .jokerpoker-shop-item {
+            background: #16213e; border: 2px solid #0f3460;
+            padding: 1rem; text-align: center; border-radius: 8px; cursor: pointer;
+        }
+         .jokerpoker-shop-item:hover { border-color: var(--primary-accent); }
     </style>
 </head>
 <body>
 
-    <!-- Bouton de retour au blog -->
-    <a href="index.html" class="back-button" title="Retour au blog">
-        <i class="bi bi-house-door-fill"></i>
-    </a>
-    
-    <!-- Bouton pour revenir au menu des jeux (visible seulement dans un jeu) -->
-    <button id="back-to-menu-btn" class="back-button" title="Retour au menu" style="display: none; left: 75px;">
-        <i class="bi bi-list"></i>
-    </button>
+    <a href="index.html" class="back-button" title="Retour au blog"><i class="bi bi-house-door-fill"></i></a>
+    <button id="back-to-menu-btn" class="back-button" title="Retour au menu" style="display: none; left: 75px;"><i class="bi bi-list"></i></button>
 
-    <!-- Écran de sélection des jeux -->
     <div id="game-selection-screen" class="game-section">
         <div class="container text-center">
             <h1>ARCADE</h1>
@@ -224,51 +243,45 @@
         </div>
     </div>
     
-    <!-- Conteneurs pour chaque jeu -->
     <div id="game-jokerpoker-container" class="game-container game-section">
         <div id="game-jokerpoker">
-            <h2 class="game-title">Joker Poker</h2>
-            <div class="jokerpoker-stats">
-                <div>Score Cible: <span id="jokerpoker-target-score">1000</span></div>
-                <div>Score: <span id="jokerpoker-current-score">0</span></div>
-                <div>Mains: <span id="jokerpoker-hands-left">4</span></div>
-                <div>Défausses: <span id="jokerpoker-discards-left">3</span></div>
+            <div class="jokerpoker-ui-grid">
+                <div class="jokerpoker-info-box">
+                    <h4>Objectif</h4>
+                    <p>Blind: <span id="jokerpoker-blind-name">Petit Blind</span></p>
+                    <p>Score Requis: <span id="jokerpoker-target-score">300</span></p>
+                </div>
+                <div class="jokerpoker-info-box" style="text-align: center;">
+                     <h4>Jeu</h4>
+                     <p>Mains: <span id="jokerpoker-hands-left">4</span> | Défausses: <span id="jokerpoker-discards-left">3</span></p>
+                     <p>Argent: $<span id="jokerpoker-money">0</span></p>
+                </div>
+                <div class="jokerpoker-info-box">
+                    <h4>Score Total</h4>
+                    <p><span id="jokerpoker-current-score">0</span></p>
+                </div>
+                <div id="jokerpoker-jokers-area"></div>
             </div>
-            <div class="jokerpoker-jokers">Jokers: <span id="jokerpoker-active-jokers">Aucun</span></div>
-            <div id="jokerpoker-hand" class="jokerpoker-hand"></div>
+
+            <div id="jokerpoker-hand"></div>
+            
             <div id="jokerpoker-play-area">
                 <div id="jokerpoker-hand-info"></div>
-                <button id="jokerpoker-play-btn" class="game-btn mx-2">Jouer Main</button>
+                <button id="jokerpoker-play-btn" class="game-btn mx-2">Jouer</button>
                 <button id="jokerpoker-discard-btn" class="game-btn mx-2">Défausser</button>
             </div>
-            <button id="jokerpoker-new-game-btn" class="game-btn mt-3" style="display: none;">Nouvelle Partie</button>
+             <div id="jokerpoker-message-area" class="mt-3 fs-5" style="font-family: var(--font-pixel); color: var(--secondary-accent);"></div>
         </div>
-    </div>
-    <div id="game-tetris-container" class="game-container game-section">
-        <div id="game-tetris">
-            <canvas id="tetris-board" width="200" height="400" class="game-canvas"></canvas>
-            <div id="tetris-sidebar">
-                <h4 style="font-family: var(--font-pixel); font-size: 0.8rem;">Suivant:</h4>
-                <canvas id="tetris-next" width="80" height="80"></canvas>
-                <div class="score-container mt-3">Score: <span id="tetris-score">0</span></div>
-                <div class="score-container">Lignes: <span id="tetris-lines">0</span></div>
-                <p class="text-white-50 mt-3" style="font-size: 0.7rem;">Flèches: bouger<br>Haut: tourner<br>Espace: tomber</p>
+        <div id="jokerpoker-shop-overlay">
+            <div>
+                <h2 class="game-title">MAGASIN</h2>
+                <div id="jokerpoker-shop-items"></div>
+                <button id="jokerpoker-continue-btn" class="game-btn mt-3">Continuer</button>
             </div>
         </div>
     </div>
-    <div id="game-pacman-container" class="game-container game-section"> ... </div>
-    <div id="game-snake-container" class="game-container game-section"> ... </div>
-    <div id="game-pong-container" class="game-container game-section"> ... </div>
-    <div id="game-breakout-container" class="game-container game-section"> ... </div>
-    <div id="game-minesweeper-container" class="game-container game-section"> ... </div>
-    <div id="game-tictactoe-container" class="game-container game-section"> ... </div>
-    <div id="game-2048-container" class="game-container game-section"> ... </div>
-    <div id="game-blackjack-container" class="game-container game-section"> ... </div>
-    <div id="game-memory-container" class="game-container game-section"> ... </div>
-    <div id="game-connectfour-container" class="game-container game-section"> ... </div>
-    <div id="game-hangman-container" class="game-container game-section"> ... </div>
-    <div id="game-flappybird-container" class="game-container game-section"> ... </div>
-    <!-- Les conteneurs des autres jeux seront ajoutés ici -->
+    
+    <!-- (Les autres conteneurs de jeux ne sont pas affichés pour la concision) -->
 
     <script>
     document.addEventListener('DOMContentLoaded', () => {
@@ -284,11 +297,9 @@
 
         function showGame(gameId) {
             if (activeGameLoop) {
-                clearInterval(activeGameLoop);
-                cancelAnimationFrame(activeGameLoop);
+                clearInterval(activeGameLoop); cancelAnimationFrame(activeGameLoop);
                 activeGameLoop = null;
             }
-
             gameSelectionScreen.style.display = 'none';
             backToMenuBtn.style.display = 'flex';
             gameContainers.forEach(container => container.style.display = 'none');
@@ -296,17 +307,14 @@
             const activeContainer = document.getElementById(`game-${gameId}-container`);
             if (activeContainer) {
                 activeContainer.style.display = 'flex';
-                // Lancement du jeu sélectionné
-                if (window[`init${gameId.charAt(0).toUpperCase() + gameId.slice(1)}`]) {
-                    window[`init${gameId.charAt(0).toUpperCase() + gameId.slice(1)}`]();
-                }
+                const initFunctionName = `init${gameId.charAt(0).toUpperCase() + gameId.slice(1)}`;
+                if (window[initFunctionName]) window[initFunctionName]();
             }
         }
 
         function showMenu() {
             if (activeGameLoop) {
-                clearInterval(activeGameLoop);
-                cancelAnimationFrame(activeGameLoop);
+                clearInterval(activeGameLoop); cancelAnimationFrame(activeGameLoop);
                 activeGameLoop = null;
             }
             gameSelectionScreen.style.display = 'flex';
@@ -314,140 +322,170 @@
             gameContainers.forEach(container => container.style.display = 'none');
         }
 
-        // --- JEU: JOKER POKER (Inspiré de Balatro) ---
+        // --- NOUVEAU JEU: JOKER POKER (BALATRO) ---
         const jokerPoker = {
-            targetScoreEl: document.getElementById('jokerpoker-target-score'),
-            currentScoreEl: document.getElementById('jokerpoker-current-score'),
-            handsLeftEl: document.getElementById('jokerpoker-hands-left'),
-            discardsLeftEl: document.getElementById('jokerpoker-discards-left'),
-            activeJokersEl: document.getElementById('jokerpoker-active-jokers'),
-            handEl: document.getElementById('jokerpoker-hand'),
-            handInfoEl: document.getElementById('jokerpoker-hand-info'),
-            playBtn: document.getElementById('jokerpoker-play-btn'),
-            discardBtn: document.getElementById('jokerpoker-discard-btn'),
-            newGameBtn: document.getElementById('jokerpoker-new-game-btn'),
+            // Éléments du DOM
+            dom: {
+                targetScoreEl: document.getElementById('jokerpoker-target-score'),
+                currentScoreEl: document.getElementById('jokerpoker-current-score'),
+                handsLeftEl: document.getElementById('jokerpoker-hands-left'),
+                discardsLeftEl: document.getElementById('jokerpoker-discards-left'),
+                moneyEl: document.getElementById('jokerpoker-money'),
+                blindNameEl: document.getElementById('jokerpoker-blind-name'),
+                jokersAreaEl: document.getElementById('jokerpoker-jokers-area'),
+                handEl: document.getElementById('jokerpoker-hand'),
+                handInfoEl: document.getElementById('jokerpoker-hand-info'),
+                messageAreaEl: document.getElementById('jokerpoker-message-area'),
+                playBtn: document.getElementById('jokerpoker-play-btn'),
+                discardBtn: document.getElementById('jokerpoker-discard-btn'),
+                shopOverlay: document.getElementById('jokerpoker-shop-overlay'),
+                shopItemsEl: document.getElementById('jokerpoker-shop-items'),
+                continueBtn: document.getElementById('jokerpoker-continue-btn'),
+            },
             
-            deck: [],
-            hand: [],
-            selectedCards: [],
-            state: {},
-            
+            // Données du jeu
+            deck: [], hand: [], selectedCards: [],
             ranks: "2,3,4,5,6,7,8,9,T,J,Q,K,A".split(","),
             suits: "♥,♦,♣,♠".split(","),
-            
-            handValues: {
-                "Haute Carte": { base: 5, multi: 1 },
-                "Paire": { base: 10, multi: 2 },
-                "Double Paire": { base: 20, multi: 3 },
-                "Brelan": { base: 30, multi: 4 },
-                "Suite": { base: 40, multi: 5 },
-                "Couleur": { base: 50, multi: 6 },
-                "Full": { base: 60, multi: 7 },
-                "Carré": { base: 80, multi: 8 },
-                "Quinte Flush": { base: 100, multi: 10 },
+            cardChips: { 'A': 11, 'K': 10, 'Q': 10, 'J': 10, 'T': 10, '9': 9, '8': 8, '7': 7, '6': 6, '5': 5, '4': 4, '3': 3, '2': 2 },
+            handLevels: {
+                "Haute Carte": { chips: 5, multi: 1 }, "Paire": { chips: 10, multi: 2 }, "Double Paire": { chips: 20, multi: 3 },
+                "Brelan": { chips: 30, multi: 4 }, "Suite": { chips: 40, multi: 5 }, "Couleur": { chips: 50, multi: 6 },
+                "Full": { chips: 60, multi: 7 }, "Carré": { chips: 80, multi: 8 }, "Quinte Flush": { chips: 100, multi: 10 },
             },
+            blinds: [
+                { name: "Petit Blind", score: 300, reward: 3 },
+                { name: "Gros Blind", score: 600, reward: 4 },
+                { name: "Le Mur", score: 1200, reward: 5 },
+            ],
+            jokerDatabase: [
+                { name: "Joker Fou", desc: "+4 Multi", effect: (calc) => { calc.totalMulti += 4; } },
+                { name: "Le Glouton", desc: "+30 Jetons", effect: (calc) => { calc.totalChips += 30; } },
+                { name: "As de Pique", desc: "Les Piques donnent +20 Jetons", effect: (calc, hand) => { hand.forEach(c => { if(c.suit === '♠') calc.totalChips += 20; }); }},
+                { name: "Roi de Coeur", desc: "x2 Multi si main contient un Roi", effect: (calc, hand) => { if(hand.some(c=>c.rank === 'K')) calc.totalMulti *= 2; }}
+            ],
+            
+            // État du jeu
+            state: {},
 
             init: function() {
-                this.newGameBtn.addEventListener('click', () => this.startNewGame());
-                this.playBtn.addEventListener('click', () => this.playHand());
-                this.discardBtn.addEventListener('click', () => this.discardHand());
+                this.dom.playBtn.addEventListener('click', () => this.playHand());
+                this.dom.discardBtn.addEventListener('click', () => this.discardHand());
+                this.dom.continueBtn.addEventListener('click', () => this.startNextBlind());
                 this.startNewGame();
             },
 
             startNewGame: function() {
                 this.state = {
-                    targetScore: 1000,
-                    currentScore: 0,
-                    handsLeft: 4,
-                    discardsLeft: 3
+                    money: 0,
+                    currentBlindIndex: 0,
+                    jokers: [],
                 };
-                this.newGameBtn.style.display = 'none';
-                this.playBtn.disabled = false;
-                this.discardBtn.disabled = false;
-                this.updateUI();
+                this.startBlind();
+            },
+            
+            startBlind: function() {
+                const blind = this.blinds[this.state.currentBlindIndex];
+                this.state = {
+                    ...this.state,
+                    handsLeft: 4,
+                    discardsLeft: 3,
+                    currentScore: 0,
+                    targetScore: blind.score,
+                };
+                this.dom.shopOverlay.style.display = 'none';
+                this.hand = [];
+                this.selectedCards = [];
                 this.createDeck();
                 this.drawHand(8);
+                this.updateUI();
+                this.toggleButtons(true);
             },
             
             createDeck: function() {
-                this.deck = [];
-                for (const suit of this.suits) {
-                    for (const rank of this.ranks) {
-                        this.deck.push({ rank, suit, value: this.ranks.indexOf(rank) + 2 });
-                    }
-                }
-                // Mélange du paquet
+                this.deck = this.suits.flatMap(suit => this.ranks.map(rank => ({ rank, suit, value: this.ranks.indexOf(rank) + 2 })));
                 this.deck.sort(() => Math.random() - 0.5);
             },
             
-            drawHand: function(numCards) {
-                for(let i=0; i < numCards; i++) {
-                    if (this.deck.length === 0) this.createDeck(); // Remélange si vide
+            drawHand: function(num) {
+                for (let i = 0; i < num; i++) {
+                    if (this.hand.length >= 8) break;
+                    if (this.deck.length === 0) this.createDeck();
                     this.hand.push(this.deck.pop());
                 }
                 this.renderHand();
             },
 
             renderHand: function() {
-                this.handEl.innerHTML = '';
+                this.dom.handEl.innerHTML = '';
                 this.hand.forEach((card, index) => {
                     const cardEl = document.createElement('div');
                     cardEl.className = `jokerpoker-card ${card.suit === '♥' || card.suit === '♦' ? 'red' : ''}`;
-                    cardEl.dataset.index = index;
                     cardEl.innerHTML = `<span class="jokerpoker-card-value">${card.rank}</span><span class="jokerpoker-card-suit">${card.suit}</span>`;
                     cardEl.addEventListener('click', () => this.selectCard(cardEl, card));
-                    this.handEl.appendChild(cardEl);
+                    this.dom.handEl.appendChild(cardEl);
                 });
             },
             
             selectCard: function(cardEl, card) {
-                const index = this.selectedCards.indexOf(card);
-                if (index > -1) {
-                    this.selectedCards.splice(index, 1);
+                const cardIndex = this.selectedCards.findIndex(c => c === card);
+                if (cardIndex > -1) {
+                    this.selectedCards.splice(cardIndex, 1);
                     cardEl.classList.remove('selected');
-                } else {
-                    if (this.selectedCards.length < 5) {
-                        this.selectedCards.push(card);
-                        cardEl.classList.add('selected');
-                    }
+                } else if (this.selectedCards.length < 5) {
+                    this.selectedCards.push(card);
+                    cardEl.classList.add('selected');
                 }
-                this.evaluateHand(this.selectedCards);
+                this.updateHandInfo();
             },
             
-            evaluateHand: function(hand) {
-                if (hand.length === 0) {
-                    this.handInfoEl.innerHTML = '';
-                    return null;
-                }
+            calculateScore: function(hand) {
+                 if (hand.length === 0) return null;
                 hand.sort((a,b) => a.value - b.value);
                 const ranks = hand.map(c => c.value);
                 const suits = hand.map(c => c.suit);
-                const counts = ranks.reduce((acc, val) => { acc[val] = (acc[val] || 0) + 1; return acc; }, {});
-                const pairs = Object.values(counts).filter(c => c === 2).length;
-                const threes = Object.values(counts).filter(c => c === 3).length;
-                const fours = Object.values(counts).filter(c => c === 4).length;
+                const rankCounts = ranks.reduce((acc, v) => { acc[v] = (acc[v] || 0) + 1; return acc; }, {});
+                
                 const isFlush = new Set(suits).size === 1;
-                const isStraight = ranks.every((val, i) => i === 0 || val === ranks[i-1] + 1);
-
+                const isStraight = ranks.every((v, i, a) => i === 0 || v === a[i-1] + 1);
+                const counts = Object.values(rankCounts);
+                
                 let handName = "Haute Carte";
                 if (isStraight && isFlush) handName = "Quinte Flush";
-                else if (fours) handName = "Carré";
-                else if (threes && pairs) handName = "Full";
+                else if (counts.includes(4)) handName = "Carré";
+                else if (counts.includes(3) && counts.includes(2)) handName = "Full";
                 else if (isFlush) handName = "Couleur";
                 else if (isStraight) handName = "Suite";
-                else if (threes) handName = "Brelan";
-                else if (pairs === 2) handName = "Double Paire";
-                else if (pairs === 1) handName = "Paire";
+                else if (counts.includes(3)) handName = "Brelan";
+                else if (counts.filter(c => c === 2).length === 2) handName = "Double Paire";
+                else if (counts.includes(2)) handName = "Paire";
+
+                const levelInfo = this.handLevels[handName];
+                let calculation = {
+                    totalChips: hand.reduce((sum, card) => sum + this.cardChips[card.rank], 0) + levelInfo.chips,
+                    totalMulti: levelInfo.multi,
+                };
+
+                // Appliquer les effets des jokers
+                this.state.jokers.forEach(joker => joker.effect(calculation, hand));
                 
-                const scoreInfo = this.handValues[handName];
-                const score = scoreInfo.base * scoreInfo.multi;
-                this.handInfoEl.innerHTML = `<div id="jokerpoker-hand-name">${handName}</div><div id="jokerpoker-hand-score">Score: ${scoreInfo.base} x ${scoreInfo.multi} = ${score}</div>`;
-                return { name: handName, score };
+                const finalScore = calculation.totalChips * calculation.totalMulti;
+                return { name: handName, chips: calculation.totalChips, multi: calculation.totalMulti, score: finalScore };
+            },
+            
+            updateHandInfo: function() {
+                const result = this.calculateScore(this.selectedCards);
+                if (result) {
+                    this.dom.handInfoEl.innerHTML = `<div id="jokerpoker-hand-name">${result.name}</div>
+                        <div id="jokerpoker-hand-score">${result.chips} x ${result.multi} = ${result.score}</div>`;
+                } else {
+                    this.dom.handInfoEl.innerHTML = '';
+                }
             },
 
             playHand: function() {
                 if (this.selectedCards.length === 0) return;
-                const result = this.evaluateHand(this.selectedCards);
+                const result = this.calculateScore(this.selectedCards);
                 if (result) {
                     this.state.currentScore += result.score;
                     this.state.handsLeft--;
@@ -455,49 +493,91 @@
                     this.drawHand(this.selectedCards.length);
                     this.selectedCards = [];
                     this.updateUI();
-                    if (this.state.currentScore >= this.state.targetScore) {
-                        this.handInfoEl.innerHTML = `<div id="jokerpoker-hand-name">VOUS GAGNEZ !</div>`;
-                        this.endGame();
-                    } else if (this.state.handsLeft === 0) {
-                         this.handInfoEl.innerHTML = `<div id="jokerpoker-hand-name">PERDU !</div>`;
-                        this.endGame();
-                    }
+                    this.checkGameState();
                 }
             },
             
             discardHand: function() {
-                if (this.selectedCards.length === 0 || this.state.discardsLeft === 0) return;
+                if (this.selectedCards.length === 0 || this.state.discardsLeft <= 0) return;
                 this.state.discardsLeft--;
                 this.hand = this.hand.filter(c => !this.selectedCards.includes(c));
                 this.drawHand(this.selectedCards.length);
                 this.selectedCards = [];
                 this.updateUI();
             },
+
+            checkGameState: function() {
+                if (this.state.currentScore >= this.state.targetScore) {
+                    this.dom.messageAreaEl.textContent = "BLIND BATTU !";
+                    this.state.money += this.blinds[this.state.currentBlindIndex].reward;
+                    this.toggleButtons(false);
+                    setTimeout(() => this.showShop(), 1500);
+                } else if (this.state.handsLeft <= 0) {
+                    this.dom.messageAreaEl.textContent = "GAME OVER";
+                    this.toggleButtons(false);
+                }
+            },
             
-            updateUI: function() {
-                this.targetScoreEl.textContent = this.state.targetScore;
-                this.currentScoreEl.textContent = this.state.currentScore;
-                this.handsLeftEl.textContent = this.state.handsLeft;
-                this.discardsLeftEl.textContent = this.state.discardsLeft;
-                this.discardBtn.disabled = this.state.discardsLeft === 0;
+            showShop: function() {
+                this.dom.messageAreaEl.textContent = "";
+                this.dom.shopItemsEl.innerHTML = '';
+                // Proposer 2 jokers aléatoires
+                const availableJokers = [...this.jokerDatabase].sort(() => .5 - Math.random()).slice(0, 2);
+                availableJokers.forEach(joker => {
+                    const itemEl = document.createElement('div');
+                    itemEl.className = 'jokerpoker-shop-item';
+                    itemEl.innerHTML = `<div class="jokerpoker-joker"><h5>${joker.name}</h5><p>${joker.desc}</p></div><p class="mt-2">$3</p>`;
+                    if (this.state.money < 3) itemEl.style.opacity = '0.5';
+                    else itemEl.onclick = () => this.buyJoker(joker, 3);
+                    this.dom.shopItemsEl.appendChild(itemEl);
+                });
+                this.dom.shopOverlay.style.display = 'flex';
             },
 
-            endGame: function() {
-                this.playBtn.disabled = true;
-                this.discardBtn.disabled = true;
-                this.newGameBtn.style.display = 'block';
+            buyJoker: function(joker, cost) {
+                if (this.state.money >= cost && this.state.jokers.length < 5) {
+                    this.state.money -= cost;
+                    this.state.jokers.push(joker);
+                    this.updateUI();
+                    this.showShop(); // Rafraîchir le magasin
+                }
+            },
+            
+            startNextBlind: function() {
+                this.state.currentBlindIndex++;
+                if (this.state.currentBlindIndex >= this.blinds.length) {
+                    this.dom.messageAreaEl.textContent = "VOUS AVEZ GAGNÉ LE JEU !";
+                    this.toggleButtons(false);
+                } else {
+                    this.startBlind();
+                }
+            },
+
+            updateUI: function() {
+                const blind = this.blinds[this.state.currentBlindIndex];
+                this.dom.targetScoreEl.textContent = blind.score;
+                this.dom.blindNameEl.textContent = blind.name;
+                this.dom.currentScoreEl.textContent = this.state.currentScore;
+                this.dom.handsLeftEl.textContent = this.state.handsLeft;
+                this.dom.discardsLeftEl.textContent = this.state.discardsLeft;
+                this.dom.moneyEl.textContent = this.state.money;
+                this.dom.discardBtn.disabled = this.state.discardsLeft <= 0;
+                this.dom.jokersAreaEl.innerHTML = '';
+                this.state.jokers.forEach(j => {
+                    this.dom.jokersAreaEl.innerHTML += `<div class="jokerpoker-joker"><h5>${j.name}</h5><p>${j.desc}</p></div>`;
+                });
+                this.updateHandInfo();
+            },
+            
+            toggleButtons: function(enabled) {
+                this.dom.playBtn.disabled = !enabled;
+                this.dom.discardBtn.disabled = !enabled || this.state.discardsLeft <= 0;
             }
         };
         window.initJokerpoker = () => jokerPoker.init();
 
+        // --- (Les initialiseurs pour les autres jeux seront ici) ---
 
-        // --- JEU: TETRIS ---
-        const tetris = {
-            // ... (Toute la logique de Tetris sera ici)
-        };
-        window.initTetris = () => tetris.init();
-
-        // ... (etc. pour tous les autres jeux)
     });
     </script>
 </body>
