@@ -104,11 +104,10 @@
             margin-bottom: 2rem;
         }
 
-        /* Bouton discret pour aller à la bibliothèque */
-        .library-button {
+        /* Boutons flottants discrets */
+        .floating-button {
             position: fixed;
             top: 20px;
-            right: 20px;
             z-index: 1000;
             border-radius: 50%;
             width: 45px;
@@ -123,18 +122,29 @@
             text-decoration: none;
         }
 
-        .library-button:hover {
+        .floating-button:hover {
             background-color: var(--primary-accent);
             border-color: var(--primary-accent);
             transform: scale(1.1);
+        }
+
+        .library-button {
+            right: 20px;
+        }
+        
+        .games-button {
+            right: 75px; /* Positionné à gauche du premier bouton */
         }
     </style>
 </head>
 <body>
 
-    <!-- Bouton discret vers la bibliothèque (recette.html) -->
-    <a href="recette.html" class="library-button" title="Accéder à la bibliothèque média">
+    <!-- Boutons discrets -->
+    <a href="recette.html" class="floating-button library-button" title="Accéder à la bibliothèque média">
         <i class="bi bi-film fs-5"></i>
+    </a>
+    <a href="jeux.html" class="floating-button games-button" title="Accéder aux jeux">
+        <i class="bi bi-controller fs-5"></i>
     </a>
 
     <div class="container">
