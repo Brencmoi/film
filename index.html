@@ -179,6 +179,31 @@
         .card-link:hover {
              text-decoration: none; /* S'assure qu'il n'y a pas de soulignement au survol */
         }
+
+        /* NOUVEAU : Adaptation pour les écrans mobiles */
+        @media (max-width: 767.98px) {
+            .main-container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+
+            .header-section h1 {
+                font-size: 2rem; /* Taille de police réduite pour le titre */
+            }
+
+            .header-section p {
+                font-size: 1rem; /* Taille de police réduite pour le sous-titre */
+            }
+
+            .filter-buttons .btn {
+                padding: 0.4rem 1rem; /* Boutons plus petits */
+                font-size: 0.9rem;
+            }
+
+            .card {
+                border-radius: 0.75rem; /* Coins légèrement moins arrondis */
+            }
+        }
     </style>
 </head>
 <body>
@@ -188,8 +213,8 @@
     <div class="main-container container py-5">
         
         <header class="header-section text-center pt-5">
-            <h1>Waow</h1>
-            <p>Oh tu fait quoi la</p>
+            <h1>Hola beauté</h1>
+            <p>Tu vas bien ?</p>
         </header>
 
         <!-- Barre de recherche -->
@@ -213,12 +238,12 @@
                 Exemple: href="https://www.themoviedb.org/movie/155-the-dark-knight"
                 target="_blank" ouvre le lien dans un nouvel onglet.
             -->
-            <div class="col-12 col-md-6 col-lg-3 media-card" data-category="film" data-title="Conjuring: L'heure du jugement">
+            <div class="col-12 col-md-6 col-lg-3 media-card" data-category="film" data-title="Conjuring: Sous l'emprise du Diable">
                 <a href="https://malgrim.com/jds8d3xqp22n/b/malgrim/15917343152" target="_blank" class="card-link">
                     <div class="card">
-                        <img src="https://fr.web.img6.acsta.net/c_310_420/img/4d/64/4d64cf354d2f787d39be9c3b64d8292b.jpg" class="card-img-top" alt="Affiche du film Conjuring: L'heure du jugement">
+                        <img src="https://fr.web.img6.acsta.net/c_310_420/img/4d/64/4d64cf354d2f787d39be9c3b64d8292b.jpg" class="card-img-top" alt="Affiche du film Conjuring: Sous l'emprise du Diable">
                         <div class="card-body">
-                            <h5 class="card-title">Conjuring: L'heure du jugement</h5>
+                            <h5 class="card-title">Conjuring: Sous l'emprise du Diable</h5>
                             <p class="card-text">Horreur</p>
                         </div>
                     </div>
@@ -335,5 +360,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
 
