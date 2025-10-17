@@ -36,6 +36,30 @@
             position: relative;
         }
 
+        /* NOUVEAU : Style pour le bouton de retour discret */
+        .back-button {
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1000;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .back-button:hover {
+            background-color: var(--primary-accent);
+            color: var(--background-color);
+        }
+
         /* Effet de lumière qui suit le curseur */
         .spotlight {
             position: fixed;
@@ -208,6 +232,11 @@
 </head>
 <body>
 
+    <!-- NOUVEAU : Bouton discret pour aller sur index.html -->
+    <a href="index.html" class="back-button" title="Retour à l'accueil">
+        <i class="bi bi-house-door-fill"></i>
+    </a>
+
     <div class="spotlight"></div>
 
     <div class="main-container container py-5">
@@ -366,5 +395,3 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
-
