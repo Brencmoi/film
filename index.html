@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recette de Cuisine</title>
+    <title>Blog de Cuisine - Carbonara Authentique</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700;900&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
     <!-- Icônes Bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 
@@ -20,63 +20,95 @@
             --text-secondary: #a0aec0;
             --card-bg: rgba(255, 255, 255, 0.05);
             --card-border: rgba(255, 255, 255, 0.1);
-            --primary-accent: #9f78ff;
+            --primary-accent: #bca0ff; /* Couleur accentuée adoucie */
         }
 
         body {
             background-color: var(--background-color);
             color: var(--text-primary);
-            font-family: 'Inter', sans-serif;
+            font-family: 'Lora', serif; /* Police plus littéraire pour le corps */
+            line-height: 1.8;
         }
 
-        .recipe-container {
+        .blog-container {
             max-width: 800px;
             margin: 4rem auto;
-            padding: 2rem;
+            padding: 3rem;
             background-color: var(--card-bg);
             border: 1px solid var(--card-border);
             border-radius: 1rem;
             backdrop-filter: blur(10px);
         }
 
-        .recipe-title {
+        .blog-title {
             font-family: 'Playfair Display', serif;
+            font-weight: 900;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
             color: var(--primary-accent);
             text-align: center;
-            margin-bottom: 1.5rem;
+            margin-bottom: 0.5rem;
         }
 
-        .recipe-image {
-            width: 100%;
-            border-radius: 0.5rem;
+        .blog-subtitle {
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            color: var(--text-secondary);
             margin-bottom: 2rem;
-            aspect-ratio: 16 / 9;
-            object-fit: cover;
+            font-style: italic;
         }
-
-        h2 {
+        
+        .blog-content h2 {
             font-family: 'Playfair Display', serif;
             border-bottom: 2px solid var(--primary-accent);
             padding-bottom: 0.5rem;
-            margin-top: 2rem;
-            margin-bottom: 1rem;
-        }
-
-        ul, ol {
-            padding-left: 1.5rem;
-        }
-
-        li {
-            margin-bottom: 0.5rem;
-            line-height: 1.6;
-            color: var(--text-secondary);
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-accent);
         }
         
+        .blog-content p, .blog-content li {
+             font-size: 1.1rem;
+             color: var(--text-secondary);
+        }
+        
+        .blog-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .blog-content ul li::before {
+            content: "•";
+            color: var(--primary-accent);
+            font-weight: bold;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
+        
+        .blog-image {
+            width: 100%;
+            border-radius: 0.75rem;
+            margin-top: 1rem;
+            margin-bottom: 0.5rem;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            border: 1px solid var(--card-border);
+        }
+
+        figcaption {
+            font-family: 'Inter', sans-serif;
+            font-style: italic;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 2rem;
+        }
+
         /* Bouton discret pour aller à la bibliothèque */
         .library-button {
             position: fixed;
             top: 20px;
-            right: 20px; /* Changé pour être à droite */
+            right: 20px;
             z-index: 1000;
             border-radius: 50%;
             width: 45px;
@@ -106,31 +138,50 @@
     </a>
 
     <div class="container">
-        <div class="recipe-container">
-            <h1 class="recipe-title">Pâtes Carbonara Authentiques</h1>
-            <img src="https://placehold.co/800x450/3a2a1a/ffffff?text=Plat+de+Pâtes" alt="Plat de pâtes carbonara" class="recipe-image">
+        <article class="blog-container">
+            <header>
+                <h1 class="blog-title">Pâtes Carbonara Authentiques</h1>
+                <p class="blog-subtitle">Le secret d'un classique romain, sans crème, s'il vous plaît.</p>
+            </header>
 
-            <h2>Ingrédients</h2>
-            <ul>
-                <li>350g de spaghettis</li>
-                <li>150g de guanciale (ou pancetta)</li>
-                <li>4 jaunes d'œufs</li>
-                <li>50g de fromage Pecorino Romano râpé</li>
-                <li>Poivre noir fraîchement moulu</li>
-                <li>Gros sel pour la cuisson des pâtes</li>
-            </ul>
+            <figure>
+                <img src="https://placehold.co/800x450/3a2a1a/ffffff?text=Le+Plat+Final" alt="Plat de pâtes carbonara" class="blog-image">
+                <figcaption>Une assiette crémeuse et réconfortante, prête en moins de 20 minutes.</figcaption>
+            </figure>
 
-            <h2>Instructions</h2>
-            <ol>
-                <li>Coupez le guanciale en petits lardons ou en dés. Faites-le revenir dans une poêle à feu moyen jusqu'à ce qu'il soit croustillant. Retirez les lardons de la poêle et réservez la graisse.</li>
-                <li>Dans un grand bol, mélangez les jaunes d'œufs et le Pecorino Romano râpé. Poivrez généreusement. Mélangez bien pour obtenir une crème lisse.</li>
-                <li>Faites cuire les spaghettis dans une grande casserole d'eau bouillante salée selon les instructions du paquet jusqu'à ce qu'ils soient al dente.</li>
-                <li>Égouttez les pâtes en conservant une louche d'eau de cuisson. Versez immédiatement les pâtes chaudes dans le bol avec le mélange d'œufs et de fromage.</li>
-                <li>Mélangez vigoureusement. La chaleur des pâtes va cuire les œufs et faire fondre le fromage pour créer une sauce crémeuse. Si la sauce est trop épaisse, ajoutez un peu d'eau de cuisson des pâtes.</li>
-                <li>Ajoutez les lardons de guanciale et un peu de leur graisse fondue. Mélangez une dernière fois.</li>
-                <li>Servez immédiatement, en saupoudrant d'un peu plus de Pecorino et de poivre noir.</li>
-            </ol>
-        </div>
+            <section class="blog-content">
+                <p>Oubliez tout ce que vous pensiez savoir sur la carbonara. La recette authentique, celle que l'on murmure dans les rues de Rome, est d'une simplicité désarmante. Elle ne repose que sur cinq ingrédients, mais leur qualité est primordiale. Suivez le guide pour un voyage express en Italie.</p>
+                
+                <h2>Les Ingrédients Sacrés</h2>
+                <ul>
+                    <li><b>Guanciale :</b> 150g. C'est la joue de porc séchée. Son goût est incomparable. À défaut, une bonne pancetta fera l'affaire.</li>
+                    <li><b>Œufs :</b> 4 jaunes. Pour le crémeux et la richesse.</li>
+                    <li><b>Pecorino Romano :</b> 50g, fraîchement râpé. C'est un fromage de brebis, salé et piquant. Pas de parmesan !</li>
+                    <li><b>Poivre noir :</b> Fraîchement moulu, et généreusement.</li>
+                    <li><b>Pâtes :</b> 350g de spaghettis, rigatoni ou mezze maniche.</li>
+                </ul>
+
+                <h2>La Préparation, Étape par Étape</h2>
+                
+                <h3>1. Le Guanciale Croustillant</h3>
+                <p>Détaillez le guanciale en lardons d'environ 1 cm. Faites-les dorer à feu moyen dans une poêle, sans ajouter de matière grasse. Le gras va fondre et les morceaux vont devenir croustillants et dorés. Une fois cuits, retirez les lardons et conservez le précieux gras dans la poêle.</p>
+                <figure>
+                    <img src="https://placehold.co/800x450/4a2a0a/ffffff?text=Guanciale+Doré" alt="Guanciale en train de frire" class="blog-image">
+                    <figcaption>La clé : une cuisson lente pour un maximum de croustillant.</figcaption>
+                </figure>
+                
+                <h3>2. La "Cremà"</h3>
+                <p>Dans un grand bol, mélangez les jaunes d'œufs avec le pecorino fraîchement râpé et une grosse pincée de poivre noir. Fouettez énergiquement jusqu'à obtenir une crème lisse et épaisse. C'est le cœur de votre sauce.</p>
+                <figure>
+                    <img src="https://placehold.co/800x450/5a4a2a/ffffff?text=La+Crème+d'Oeufs" alt="Mélange d'oeufs et de fromage" class="blog-image">
+                    <figcaption>La texture doit être celle d'une crème épaisse.</figcaption>
+                </figure>
+
+                <h3>3. L'Union Sacrée</h3>
+                <p>Faites cuire vos pâtes "al dente" dans un grand volume d'eau bouillante salée. Juste avant de les égoutter, prélevez une petite louche d'eau de cuisson. Égouttez rapidement les pâtes et versez-les immédiatement dans le bol contenant la crème d'œufs. Mélangez sans attendre : la chaleur des pâtes va cuire la sauce délicatement, sans la faire coaguler. Ajoutez un peu d'eau de cuisson pour délayer si nécessaire, jusqu'à obtenir une consistance nappante. Incorporez enfin les lardons et servez sans plus attendre, avec un tour de moulin à poivre et un peu de pecorino supplémentaire.</p>
+
+            </section>
+        </article>
     </div>
 
 </body>
