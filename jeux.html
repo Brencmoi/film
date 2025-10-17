@@ -130,27 +130,14 @@
 
         /* --- Style JOKER POKER (BALATRO) --- */
         #game-jokerpoker-container { background-color: #1a1a2e; position: relative; }
-        #game-jokerpoker-container::before { content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px); background-size: 100% 3px; pointer-events: none; z-index: 1; }
         #game-jokerpoker { max-width: 900px; width:100%; text-align: center; position: relative; z-index: 2;}
         .jokerpoker-ui-grid { display: grid; grid-template-columns: 1fr 2fr 1fr; gap: 1rem; font-family: var(--font-pixel); font-size: 0.7rem; margin-bottom: 1rem; color: #fff; }
         .jokerpoker-info-box { background: #16213e; border: 2px solid #0f3460; padding: 0.5rem; border-radius: 8px; text-align: left; }
         .jokerpoker-info-box h4 { font-size: 0.8rem; color: var(--secondary-accent); margin-bottom: 0.5rem;}
-        .jokerpoker-info-box p { margin-bottom: 0.2rem; } .jokerpoker-info-box span { color: var(--primary-accent); }
-        #jokerpoker-jokers-area { grid-column: span 3; background: #16213e; border: 2px solid #0f3460; min-height: 80px; border-radius: 8px; padding: 0.5rem; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;}
-        .jokerpoker-joker { background: #e94560; color: #fff; padding: 0.5rem; border-radius: 5px; font-family: var(--font-sans); text-align: center; border: 2px solid #a42c3e; width: 90px; }
-        .jokerpoker-joker h5 { font-size: 0.8rem; font-weight: bold; margin-bottom: 0.2rem;} .jokerpoker-joker p { font-size: 0.7rem; line-height: 1.2; }
-        #jokerpoker-hand { min-height: 120px; display: flex; justify-content: center; gap: 10px; flex-wrap: wrap; margin: 1.5rem 0;}
         .jokerpoker-card { width: 80px; height: 110px; border-radius: 8px; background: #fff; color: #000; border: 2px solid #aaa; cursor: pointer; box-shadow: 3px 3px 5px rgba(0,0,0,0.3); transition: all 0.2s ease; position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 5px; }
         .jokerpoker-card.selected { transform: translateY(-20px); border-color: var(--primary-accent); box-shadow: 0 10px 15px var(--primary-accent);}
         .jokerpoker-card-value { font-size: 1.5rem; font-weight: bold; align-self: flex-start; } .jokerpoker-card-suit { font-size: 1.5rem; align-self: flex-end; } .jokerpoker-card.red { color: #d63031; }
-        #jokerpoker-play-area { margin-top: 1rem; text-align: center; }
-        #jokerpoker-hand-info { background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 8px; font-size: 1.2rem; min-height: 60px; font-weight: bold; display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 1rem; }
-        #jokerpoker-hand-name { color: var(--primary-accent); font-family: var(--font-pixel); font-size: 1rem;} #jokerpoker-hand-score { color: var(--text-primary); font-size: 1.2rem;}
-        #jokerpoker-shop-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); backdrop-filter: blur(5px); display: none; align-items: center; justify-content: center; flex-direction: column; z-index: 10; }
-        #jokerpoker-shop-items { display: flex; gap: 1rem; margin-bottom: 1rem;}
-        .jokerpoker-shop-item { background: #16213e; border: 2px solid #0f3460; padding: 1rem; text-align: center; border-radius: 8px; cursor: pointer; }
-        .jokerpoker-shop-item:hover { border-color: var(--primary-accent); }
-
+        
         /* --- Style TETRIS --- */
         #game-tetris { display: flex; gap: 2rem; align-items: flex-start; flex-wrap: wrap; justify-content: center; }
         #tetris-sidebar { background: var(--card-bg); border: 2px solid var(--card-border); border-radius: 1rem; padding: 1.5rem; min-width: 180px; }
@@ -197,7 +184,6 @@
             font-family: var(--font-pixel); font-size: 1.5rem; color: #fff;
             transition: all 0.1s ease-in-out;
         }
-        /* Styles pour les différentes tuiles */
         .tile-2048[data-value="2"] { background-color: #eee4da; color: #776e65; }
         .tile-2048[data-value="4"] { background-color: #ede0c8; color: #776e65; }
         .tile-2048[data-value="8"] { background-color: #f2b179; color: #f9f6f2; }
@@ -227,7 +213,7 @@
         .connectfour-cell.player1 { background-color: #ff4136; }
         .connectfour-cell.player2 { background-color: #ffdc00; }
         .connectfour-col:hover .connectfour-cell:not(.player1):not(.player2) {
-            background-color: rgba(255, 65, 54, 0.3); /* Prévisualisation coup joueur 1 */
+            background-color: rgba(255, 65, 54, 0.3);
         }
         #connectfour-message { font-size: 1.2rem; margin-top: 1rem; min-height: 1.5rem; }
 
@@ -277,7 +263,7 @@
             display: flex; align-items: center; justify-content: center;
             border-radius: 6px;
         }
-        .memory-card .card-front { background: #1a1a2e; } /* Dos de la carte */
+        .memory-card .card-front { background: #1a1a2e; }
         .memory-card .card-back {
             background: var(--card-bg);
             border: 1px solid var(--primary-accent);
@@ -294,6 +280,63 @@
             opacity: 0.5;
         }
         #memory-moves { margin-top: 1rem; font-size: 1.2rem; }
+
+        /* --- Style DÉMINEUR (Minesweeper) --- */
+        #game-minesweeper { text-align: center; }
+        #minesweeper-info { font-size: 1.2rem; margin-bottom: 1rem; }
+        #minesweeper-board {
+            display: grid;
+            gap: 2px;
+            background: #000;
+            border: 2px solid var(--card-border);
+            margin: auto;
+            /* Sera défini par JS */
+        }
+        .minesweeper-cell {
+            width: 30px; height: 30px;
+            background: #111;
+            border: 1px solid #333;
+            display: flex; align-items: center; justify-content: center;
+            font-family: var(--font-pixel); font-size: 1rem;
+            color: #fff; cursor: pointer;
+            user-select: none;
+        }
+        .minesweeper-cell.revealed {
+            background: #2a2a4a;
+            border-color: #444;
+        }
+        .minesweeper-cell.flagged { color: var(--secondary-accent); }
+        .minesweeper-cell.mine { background: #ff4136; }
+        /* Couleurs pour les numéros */
+        .minesweeper-cell[data-count="1"] { color: #0DC2FF; }
+        .minesweeper-cell[data-count="2"] { color: #0DFF72; }
+        .minesweeper-cell[data-count="3"] { color: #F538FF; }
+        .minesweeper-cell[data-count="4"] { color: #FFE138; }
+        .minesweeper-cell[data-count="5"] { color: #FF8E0D; }
+        .minesweeper-cell[data-count="6"] { color: #FF0D72; }
+        
+        /* --- Style BLACKJACK --- */
+        #game-blackjack { text-align: center; }
+        .blackjack-hand {
+            display: flex; justify-content: center; gap: 10px;
+            min-height: 120px; margin: 1rem 0;
+        }
+        .blackjack-card {
+            width: 80px; height: 110px; border-radius: 8px;
+            background: #fff; color: #000; border: 2px solid #aaa;
+            box-shadow: 3px 3px 5px rgba(0,0,0,0.3);
+            display: flex; flex-direction: column; justify-content: space-between; padding: 5px;
+        }
+        .blackjack-card-hidden {
+            background: repeating-linear-gradient(45deg, #555, #555 10px, #444 10px, #444 20px);
+            border-color: #333;
+        }
+        .blackjack-card-value { font-size: 1.5rem; font-weight: bold; align-self: flex-start; }
+        .blackjack-card-suit { font-size: 1.5rem; align-self: flex-end; }
+        .blackjack-card.red { color: #d63031; }
+        
+        #blackjack-message { font-size: 1.2rem; margin-top: 1rem; min-height: 1.5rem; font-weight: bold; }
+        #blackjack-scores { font-family: var(--font-pixel); font-size: 1.2rem; }
         
     </style>
 </head>
@@ -305,7 +348,7 @@
     <div id="game-selection-screen" class="game-section">
         <div class="container text-center">
             <h1>ARCADE</h1>
-            <div class="row g-4 g-md-5 justify-content-center">
+            <div class="row g-4 g-md-5 justify-content: center">
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="jokerpoker"><i class="bi bi-suit-club-fill"></i><h3>Joker Poker</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="tetris"><i class="bi bi-bricks"></i><h3>Tetris</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="snake"><i class="bi bi-bug-fill"></i><h3>Snake</h3></div></div>
@@ -317,10 +360,10 @@
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="connectfour"><i class="bi bi-grid-3x3-gap-fill"></i><h3>Puissance 4</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="hangman"><i class="bi bi-emoji-dizzy-fill"></i><h3>Pendu</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="memory"><i class="bi bi-question-diamond-fill"></i><h3>Memory</h3></div></div>
-                
-                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="pacman"><i class="bi bi-joystick"></i><h3>Pac-Man</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="minesweeper"><i class="bi bi-flag-fill"></i><h3>Démineur</h3></div></div>
                 <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="blackjack"><i class="bi bi-suit-spade-fill"></i><h3>Blackjack</h3></div></div>
+                
+                <div class="col-4 col-md-3 col-lg-2"><div class="game-card" data-game="pacman"><i class="bi bi-joystick"></i><h3>Pac-Man</h3></div></div>
             </div>
         </div>
     </div>
@@ -378,8 +421,9 @@
                 activeKeyListener = null;
             }
             if(activeMouseListener) {
-                // Pour Flappy Bird et autres
+                // Pour Flappy Bird, Démineur, etc.
                 document.removeEventListener('click', activeMouseListener);
+                document.removeEventListener('contextmenu', activeMouseListener); // Pour Démineur
                 activeMouseListener = null;
             }
             hideGameOver();
@@ -425,11 +469,17 @@
             gameOverOverlay.style.display = 'none';
         }
 
+        /*
+        ====================================================================
+        LES 11 JEUX PRÉCÉDENTS SONT ICI (MINIMISÉS POUR LA LISIBILITÉ)
+        Joker Poker, Tetris, Snake, Pong, Breakout, Morpion,
+        Flappy Bird, 2048, Puissance 4, Pendu, Memory
+        ====================================================================
+        */
+
         // --- MOTEUR DE JEU : JOKER POKER (BALATRO) ---
-        // (Code de Joker Poker inchangé... il est long, donc je le minimise ici pour la lisibilité)
         const jokerPoker = {
-            dom: {},
-            deck: [], hand: [], selectedCards: [],
+            dom: {}, deck: [], hand: [], selectedCards: [],
             ranks: "2,3,4,5,6,7,8,9,T,J,Q,K,A".split(","),
             suits: "♥,♦,♣,♠".split(","),
             cardChips: { 'A': 11, 'K': 10, 'Q': 10, 'J': 10, 'T': 10, '9': 9, '8': 8, '7': 7, '6': 6, '5': 5, '4': 4, '3': 3, '2': 2 },
@@ -589,29 +639,22 @@
             },
             updateUI: function() {
                 const blind = this.blinds[this.state.currentBlindIndex];
-                this.dom.targetScoreEl.textContent = blind.score;
-                this.dom.blindNameEl.textContent = blind.name;
+                this.dom.targetScoreEl.textContent = blind.score; this.dom.blindNameEl.textContent = blind.name;
                 this.dom.currentScoreEl.textContent = this.state.currentScore;
                 this.dom.handsLeftEl.textContent = this.state.handsLeft;
                 this.dom.discardsLeftEl.textContent = this.state.discardsLeft;
                 this.dom.moneyEl.textContent = this.state.money;
                 this.dom.discardBtn.disabled = this.state.discardsLeft <= 0;
                 this.dom.jokersAreaEl.innerHTML = '';
-                this.state.jokers.forEach(j => {
-                    this.dom.jokersAreaEl.innerHTML += `<div class="jokerpoker-joker"><h5>${j.name}</h5><p>${j.desc}</p></div>`;
-                });
+                this.state.jokers.forEach(j => { this.dom.jokersAreaEl.innerHTML += `<div class="jokerpoker-joker"><h5>${j.name}</h5><p>${j.desc}</p></div>`; });
                 if (this.state.jokers.length === 0) this.dom.jokersAreaEl.innerHTML = '<p style="font-size:0.7rem; color: #888;">Pas de Jokers</p>';
                 this.updateHandInfo();
             },
-            toggleButtons: function(enabled) {
-                this.dom.playBtn.disabled = !enabled;
-                this.dom.discardBtn.disabled = !enabled || this.state.discardsLeft <= 0;
-            }
+            toggleButtons: function(enabled) { this.dom.playBtn.disabled = !enabled; this.dom.discardBtn.disabled = !enabled || this.state.discardsLeft <= 0; }
         };
         window.initJokerpoker = () => jokerPoker.init();
 
         // --- MOTEUR DE JEU : TETRIS ---
-        // (Code de Tetris inchangé)
         window.initTetris = () => {
             const container = document.getElementById('game-tetris-container');
             container.innerHTML = `
@@ -625,33 +668,23 @@
                         <p class="game-instructions">Flèches: bouger<br>Haut: tourner<br>Espace: tomber</p>
                     </div>
                 </div>`;
-            const canvas = document.getElementById('tetris-board');
-            const context = canvas.getContext('2d');
-            const nextCanvas = document.getElementById('tetris-next');
-            const nextContext = nextCanvas.getContext('2d');
-            const scoreEl = document.getElementById('tetris-score');
-            const linesEl = document.getElementById('tetris-lines');
+            const canvas = document.getElementById('tetris-board'); const context = canvas.getContext('2d');
+            const nextCanvas = document.getElementById('tetris-next'); const nextContext = nextCanvas.getContext('2d');
+            const scoreEl = document.getElementById('tetris-score'); const linesEl = document.getElementById('tetris-lines');
             const COLS = 10, ROWS = 20, BLOCK_SIZE = 20;
             const COLORS = [null, '#FF0D72', '#0DC2FF', '#0DFF72', '#F538FF', '#FF8E0D', '#FFE138', '#3877FF'];
             const PIECES = [ [[0,0,0,0], [1,1,1,1], [0,0,0,0], [0,0,0,0]], [[2,0,0], [2,2,2], [0,0,0]], [[0,0,3], [3,3,3], [0,0,0]], [[4,4], [4,4]], [[0,5,5], [5,5,0], [0,0,0]], [[0,6,0], [6,6,6], [0,0,0]], [[7,7,0], [0,7,7], [0,0,0]] ];
             let board, score, lines, dropStart, piece, nextPiece;
             function initGame() {
                 board = Array.from({ length: ROWS }, () => Array(COLS).fill(0));
-                score = 0; lines = 0;
-                dropStart = Date.now();
+                score = 0; lines = 0; dropStart = Date.now();
                 nextPiece = { matrix: PIECES[Math.floor(Math.random() * PIECES.length)] };
-                resetPiece();
-                updateScoreUI();
+                resetPiece(); updateScoreUI();
                 if (activeGameLoop) cancelAnimationFrame(activeGameLoop);
                 gameLoop();
             }
             function updateScoreUI() { scoreEl.textContent = score; linesEl.textContent = lines; }
-            function drawBlock(ctx, x, y, color) {
-                ctx.fillStyle = color;
-                ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-                ctx.strokeStyle = '#000';
-                ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE);
-            }
+            function drawBlock(ctx, x, y, color) { ctx.fillStyle = color; ctx.fillRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); ctx.strokeStyle = '#000'; ctx.strokeRect(x * BLOCK_SIZE, y * BLOCK_SIZE, BLOCK_SIZE, BLOCK_SIZE); }
             function draw() {
                 context.clearRect(0, 0, canvas.width, canvas.height);
                 board.forEach((row, y) => row.forEach((value, x) => { if (value > 0) drawBlock(context, x, y, COLORS[value]); }));
@@ -659,33 +692,18 @@
                 nextContext.clearRect(0,0, nextCanvas.width, nextCanvas.height);
                 nextPiece.matrix.forEach((row, y) => row.forEach((value, x) => { if (value > 0) { const drawX = x + (4 - nextPiece.matrix[0].length) / 2; const drawY = y + (4 - nextPiece.matrix.length) / 2; drawBlock(nextContext, drawX, drawY, COLORS[value]); } }));
             }
-            function drop() {
-                if (!collision(0, 1, piece)) { piece.y++; } 
-                else { merge(); clearLines(); resetPiece(); }
-                dropStart = Date.now();
-            }
-            function gameLoop() {
-                if (Date.now() - dropStart > 1000) drop();
-                draw();
-                activeGameLoop = requestAnimationFrame(gameLoop);
-            }
+            function drop() { if (!collision(0, 1, piece)) { piece.y++; } else { merge(); clearLines(); resetPiece(); } dropStart = Date.now(); }
+            function gameLoop() { if (Date.now() - dropStart > 1000) drop(); draw(); activeGameLoop = requestAnimationFrame(gameLoop); }
             function resetPiece() {
-                piece = nextPiece;
-                piece.x = Math.floor(COLS / 2) - Math.floor(piece.matrix[0].length / 2);
-                piece.y = 0;
+                piece = nextPiece; piece.x = Math.floor(COLS / 2) - Math.floor(piece.matrix[0].length / 2); piece.y = 0;
                 nextPiece = { matrix: PIECES[Math.floor(Math.random() * PIECES.length)] };
-                if (collision(0, 0, piece)) {
-                    if(activeGameLoop) cancelAnimationFrame(activeGameLoop);
-                    activeGameLoop = null;
-                    showGameOver("GAME OVER", `Score: ${score} | Lignes: ${lines}`, initGame);
-                }
+                if (collision(0, 0, piece)) { if(activeGameLoop) cancelAnimationFrame(activeGameLoop); activeGameLoop = null; showGameOver("GAME OVER", `Score: ${score} | Lignes: ${lines}`, initGame); }
             }
             function collision(dx, dy, currentPiece) {
                 for (let y = 0; y < currentPiece.matrix.length; y++) {
                     for (let x = 0; x < currentPiece.matrix[y].length; x++) {
                         if (currentPiece.matrix[y][x] !== 0) {
-                            let newX = currentPiece.x + x + dx;
-                            let newY = currentPiece.y + y + dy;
+                            let newX = currentPiece.x + x + dx; let newY = currentPiece.y + y + dy;
                             if (newX < 0 || newX >= COLS || newY >= ROWS || (newY >= 0 && board[newY][newX] !== 0)) { return true; }
                         }
                     }
@@ -694,8 +712,7 @@
             function merge() { piece.matrix.forEach((row, y) => row.forEach((value, x) => { if (value !== 0) { board[piece.y + y][piece.x + x] = value; } })); }
             function rotate(matrix) { const N = matrix.length - 1; const result = matrix.map((row, i) => row.map((val, j) => matrix[N - j][i])); return result; }
             function pieceRotate() {
-                const rotated = rotate(piece.matrix);
-                let offsetX = 1;
+                const rotated = rotate(piece.matrix); let offsetX = 1;
                 if (!collision(0, 0, { ...piece, matrix: rotated })) { piece.matrix = rotated; } 
                 else if (!collision(offsetX, 0, { ...piece, matrix: rotated })) { piece.x += offsetX; piece.matrix = rotated; } 
                 else if (!collision(-offsetX, 0, { ...piece, matrix: rotated })) { piece.x -= offsetX; piece.matrix = rotated; }
@@ -704,8 +721,7 @@
                 let clearedLines = 0;
                 outer: for (let y = ROWS - 1; y >= 0; y--) {
                     for (let x = 0; x < COLS; x++) { if (board[y][x] === 0) { continue outer; } }
-                    const row = board.splice(y, 1)[0].fill(0);
-                    board.unshift(row);
+                    const row = board.splice(y, 1)[0].fill(0); board.unshift(row);
                     clearedLines++; y++; 
                 }
                 if (clearedLines > 0) { lines += clearedLines; score += clearedLines * 100 * clearedLines; }
@@ -725,7 +741,6 @@
         }
         
         // --- MOTEUR DE JEU : SNAKE ---
-        // (Code de Snake inchangé)
         window.initSnake = () => {
             const container = document.getElementById('game-snake-container');
             container.innerHTML = `
@@ -735,19 +750,13 @@
                     <canvas id="snake-board" width="400" height="400" class="game-canvas"></canvas>
                     <p class="game-instructions">Utilisez les flèches pour vous diriger.</p>
                 </div>`;
-            const canvas = document.getElementById('snake-board');
-            const context = canvas.getContext('2d');
+            const canvas = document.getElementById('snake-board'); const context = canvas.getContext('2d');
             const scoreEl = document.getElementById('snake-score');
-            const GRID_SIZE = 20;
-            const TILE_COUNT = canvas.width / GRID_SIZE;
+            const GRID_SIZE = 20; const TILE_COUNT = canvas.width / GRID_SIZE;
             let snake, apple, velocity, score, gameSpeed;
             function initGame() {
-                snake = [{ x: 10, y: 10 }];
-                apple = { x: 15, y: 15 };
-                velocity = { x: 0, y: 0 };
-                score = 0;
-                gameSpeed = 100;
-                scoreEl.textContent = score;
+                snake = [{ x: 10, y: 10 }]; apple = { x: 15, y: 15 }; velocity = { x: 0, y: 0 };
+                score = 0; gameSpeed = 100; scoreEl.textContent = score;
                 if (activeGameLoop) clearInterval(activeGameLoop);
                 activeGameLoop = setInterval(gameLoop, gameSpeed);
             }
@@ -757,17 +766,14 @@
                 for(let i = 1; i < snake.length; i++) { if (head.x === snake[i].x && head.y === snake[i].y) { return gameOver(); } }
                 snake.unshift(head);
                 if (head.x === apple.x && head.y === apple.y) {
-                    score++; scoreEl.textContent = score;
-                    placeApple();
-                    clearInterval(activeGameLoop);
-                    gameSpeed = Math.max(50, gameSpeed * 0.95);
+                    score++; scoreEl.textContent = score; placeApple();
+                    clearInterval(activeGameLoop); gameSpeed = Math.max(50, gameSpeed * 0.95);
                     activeGameLoop = setInterval(gameLoop, gameSpeed);
                 } else { snake.pop(); }
                 draw();
             }
             function placeApple() {
-                apple.x = Math.floor(Math.random() * TILE_COUNT);
-                apple.y = Math.floor(Math.random() * TILE_COUNT);
+                apple.x = Math.floor(Math.random() * TILE_COUNT); apple.y = Math.floor(Math.random() * TILE_COUNT);
                 for(let part of snake) { if (part.x === apple.x && part.y === apple.y) { return placeApple(); } }
             }
             function draw() {
@@ -777,11 +783,7 @@
                 context.fillStyle = 'var(--secondary-accent)';
                 context.fillRect(apple.x * GRID_SIZE, apple.y * GRID_SIZE, GRID_SIZE - 2, GRID_SIZE - 2);
             }
-            function gameOver() {
-                clearInterval(activeGameLoop);
-                activeGameLoop = null;
-                showGameOver("GAME OVER", `Score: ${score}`, initGame);
-            }
+            function gameOver() { clearInterval(activeGameLoop); activeGameLoop = null; showGameOver("GAME OVER", `Score: ${score}`, initGame); }
             activeKeyListener = (e) => {
                 e.preventDefault();
                 switch(e.key) {
@@ -796,7 +798,6 @@
         }
 
         // --- MOTEUR DE JEU : PONG ---
-        // (Code de Pong inchangé)
         window.initPong = () => {
             const container = document.getElementById('game-pong-container');
             container.innerHTML = `
@@ -806,11 +807,9 @@
                     <canvas id="pong-board" width="600" height="400" class="game-canvas"></canvas>
                     <p class="game-instructions">Haut/Bas pour le joueur de gauche. (Joueur droit = IA)</p>
                 </div>`;
-            const canvas = document.getElementById('pong-board');
-            const context = canvas.getContext('2d');
+            const canvas = document.getElementById('pong-board'); const context = canvas.getContext('2d');
             const scoreEl = document.getElementById('pong-score');
-            const PADDLE_HEIGHT = 100, PADDLE_WIDTH = 10;
-            const WINNING_SCORE = 5;
+            const PADDLE_HEIGHT = 100, PADDLE_WIDTH = 10; const WINNING_SCORE = 5;
             let ball, player1, player2, keys = {};
             function initGame() {
                 ball = { x: canvas.width / 2, y: canvas.height / 2, radius: 10, speed: 5, dx: 5, dy: 5 };
@@ -821,16 +820,9 @@
                 gameLoop();
             }
             function updateScore() { scoreEl.textContent = `${player1.score} - ${player2.score}`; }
-            function resetBall() {
-                ball.x = canvas.width / 2; ball.y = canvas.height / 2;
-                ball.dx = -ball.dx; ball.speed = 5;
-            }
+            function resetBall() { ball.x = canvas.width / 2; ball.y = canvas.height / 2; ball.dx = -ball.dx; ball.speed = 5; }
             function drawRect(x, y, w, h, color) { context.fillStyle = color; context.fillRect(x, y, w, h); }
-            function drawCircle(x, y, r, color) {
-                context.fillStyle = color; context.beginPath();
-                context.arc(x, y, r, 0, Math.PI * 2, false);
-                context.closePath(); context.fill();
-            }
+            function drawCircle(x, y, r, color) { context.fillStyle = color; context.beginPath(); context.arc(x, y, r, 0, Math.PI * 2, false); context.closePath(); context.fill(); }
             function gameLoop() {
                 if (keys['ArrowUp'] && player1.y > 0) player1.y -= player1.speed;
                 if (keys['ArrowDown'] && player1.y < canvas.height - player1.height) player1.y += player1.speed;
@@ -839,27 +831,16 @@
                 if (player2.y > aiTarget && player2.y > 0) player2.y -= player2.speed;
                 ball.x += ball.dx; ball.y += ball.dy;
                 if (ball.y + ball.radius > canvas.height || ball.y - ball.radius < 0) ball.dy = -ball.dy;
-                if (ball.x - ball.radius < player1.x + player1.width && ball.y > player1.y && ball.y < player1.y + player1.height) {
-                    ball.dx = -ball.dx; ball.speed *= 1.1; ball.dx = ball.speed;
-                }
-                if (ball.x + ball.radius > player2.x && ball.y > player2.y && ball.y < player2.y + player2.height) {
-                    ball.dx = -ball.dx; ball.speed *= 1.1; ball.dx = -ball.speed;
-                }
-                if (ball.x - ball.radius < 0) {
-                    player2.score++; updateScore(); resetBall();
-                } else if (ball.x + ball.radius > canvas.width) {
-                    player1.score++; updateScore(); resetBall();
-                }
+                if (ball.x - ball.radius < player1.x + player1.width && ball.y > player1.y && ball.y < player1.y + player1.height) { ball.dx = -ball.dx; ball.speed *= 1.1; ball.dx = ball.speed; }
+                if (ball.x + ball.radius > player2.x && ball.y > player2.y && ball.y < player2.y + player2.height) { ball.dx = -ball.dx; ball.speed *= 1.1; ball.dx = -ball.speed; }
+                if (ball.x - ball.radius < 0) { player2.score++; updateScore(); resetBall(); } 
+                else if (ball.x + ball.radius > canvas.width) { player1.score++; updateScore(); resetBall(); }
                 drawRect(0, 0, canvas.width, canvas.height, '#111');
                 drawRect(player1.x, player1.y, player1.width, player1.height, 'var(--primary-accent)');
                 drawRect(player2.x, player2.y, player2.width, player2.height, 'var(--secondary-accent)');
                 drawCircle(ball.x, ball.y, ball.radius, 'var(--text-primary)');
-                if (player1.score >= WINNING_SCORE) {
-                    showGameOver("VICTOIRE !", `Vous avez gagné ${player1.score} à ${player2.score}`, initGame); return;
-                }
-                if (player2.score >= WINNING_SCORE) {
-                    showGameOver("GAME OVER", `L'IA a gagné ${player2.score} à ${player1.score}`, initGame); return;
-                }
+                if (player1.score >= WINNING_SCORE) { showGameOver("VICTOIRE !", `Vous avez gagné ${player1.score} à ${player2.score}`, initGame); return; }
+                if (player2.score >= WINNING_SCORE) { showGameOver("GAME OVER", `L'IA a gagné ${player2.score} à ${player1.score}`, initGame); return; }
                 activeGameLoop = requestAnimationFrame(gameLoop);
             }
             activeKeyListener = (e) => { e.preventDefault(); keys[e.key] = (e.type === 'keydown'); };
@@ -869,7 +850,6 @@
         }
 
         // --- MOTEUR DE JEU : BREAKOUT ---
-        // (Code de Breakout inchangé)
         window.initBreakout = () => {
             const container = document.getElementById('game-breakout-container');
             container.innerHTML = `
@@ -879,8 +859,7 @@
                     <canvas id="breakout-board" width="480" height="320" class="game-canvas"></canvas>
                     <p class="game-instructions">Gauche/Droite pour bouger.</p>
                 </div>`;
-            const canvas = document.getElementById('breakout-board');
-            const context = canvas.getContext('2d');
+            const canvas = document.getElementById('breakout-board'); const context = canvas.getContext('2d');
             const scoreEl = document.getElementById('breakout-score');
             let ball, paddle, bricks, score, keys = {};
             let brickRowCount = 5, brickColumnCount = 8;
@@ -890,10 +869,7 @@
                 ball = { x: canvas.width / 2, y: canvas.height - 30, radius: 10, dx: 4, dy: -4 };
                 paddle = { x: (canvas.width - 100) / 2, y: canvas.height - 20, width: 100, height: 10, speed: 7 };
                 bricks = [];
-                for (let c = 0; c < brickColumnCount; c++) {
-                    bricks[c] = [];
-                    for (let r = 0; r < brickRowCount; r++) { bricks[c][r] = { x: 0, y: 0, status: 1 }; }
-                }
+                for (let c = 0; c < brickColumnCount; c++) { bricks[c] = []; for (let r = 0; r < brickRowCount; r++) { bricks[c][r] = { x: 0, y: 0, status: 1 }; } }
                 if (activeGameLoop) cancelAnimationFrame(activeGameLoop);
                 gameLoop();
             }
@@ -903,8 +879,7 @@
                 for (let c = 0; c < brickColumnCount; c++) {
                     for (let r = 0; r < brickRowCount; r++) {
                         if (bricks[c][r].status === 1) {
-                            let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft;
-                            let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
+                            let brickX = (c * (brickWidth + brickPadding)) + brickOffsetLeft; let brickY = (r * (brickHeight + brickPadding)) + brickOffsetTop;
                             bricks[c][r].x = brickX; bricks[c][r].y = brickY;
                             context.beginPath(); context.rect(brickX, brickY, brickWidth, brickHeight); context.fillStyle = 'var(--secondary-accent)'; context.fill(); context.closePath();
                         }
@@ -919,9 +894,7 @@
                             if (ball.x > b.x && ball.x < b.x + brickWidth && ball.y > b.y && ball.y < b.y + brickHeight) {
                                 ball.dy = -ball.dy; b.status = 0; score++;
                                 scoreEl.textContent = `Score: ${score}`;
-                                if (score === brickRowCount * brickColumnCount) {
-                                    showGameOver("VICTOIRE !", `Score final: ${score}`, initGame); return;
-                                }
+                                if (score === brickRowCount * brickColumnCount) { showGameOver("VICTOIRE !", `Score final: ${score}`, initGame); return; }
                             }
                         }
                     }
@@ -948,7 +921,6 @@
         }
 
         // --- MOTEUR DE JEU : MORPION (TicTacToe) ---
-        // (Code de Morpion inchangé)
         window.initTictactoe = () => {
             const container = document.getElementById('game-tictactoe-container');
             container.innerHTML = `
@@ -957,20 +929,16 @@
                     <div id="tictactoe-board"></div>
                     <div id="tictactoe-message" class="score-container"></div>
                 </div>`;
-            const boardEl = document.getElementById('tictactoe-board');
-            const messageEl = document.getElementById('tictactoe-message');
+            const boardEl = document.getElementById('tictactoe-board'); const messageEl = document.getElementById('tictactoe-message');
             let board, currentPlayer, gameActive;
             const winningConditions = [ [0, 1, 2], [3, 4, 5], [6, 7, 8], [0, 3, 6], [1, 4, 7], [2, 5, 8], [0, 4, 8], [2, 4, 6] ];
             function initGame() {
-                board = Array(9).fill('');
-                currentPlayer = 'X'; gameActive = true;
+                board = Array(9).fill(''); currentPlayer = 'X'; gameActive = true;
                 messageEl.textContent = "C'est au tour de X";
                 boardEl.innerHTML = '';
                 for (let i = 0; i < 9; i++) {
-                    const cell = document.createElement('div');
-                    cell.classList.add('tictactoe-cell');
-                    cell.dataset.index = i;
-                    cell.addEventListener('click', handleCellClick);
+                    const cell = document.createElement('div'); cell.classList.add('tictactoe-cell');
+                    cell.dataset.index = i; cell.addEventListener('click', handleCellClick);
                     boardEl.appendChild(cell);
                 }
                 activeGameLoop = null; activeKeyListener = null;
@@ -982,9 +950,7 @@
                 if (gameActive && !checkDraw()) { setTimeout(aiTurn, 500); }
             }
             function makeMove(index, player) {
-                board[index] = player;
-                boardEl.children[index].textContent = player;
-                boardEl.children[index].classList.add(player);
+                board[index] = player; boardEl.children[index].textContent = player; boardEl.children[index].classList.add(player);
                 if (checkWin(player)) {
                     messageEl.textContent = `${player} a gagné !`; gameActive = false;
                     showGameOver(`${player} A GAGNÉ !`, "Félicitations !", initGame);
@@ -1008,7 +974,6 @@
         }
 
         // --- MOTEUR DE JEU : FLAPPY BIRD ---
-        // (Code de Flappy Bird inchangé, mais listener de touches corrigé)
         window.initFlappybird = () => {
             const container = document.getElementById('game-flappybird-container');
             container.innerHTML = `
@@ -1018,13 +983,11 @@
                     <canvas id="flappybird-board" width="288" height="512" class="game-canvas"></canvas>
                     <p class="game-instructions">Cliquez ou 'Espace' pour sauter.</p>
                 </div>`;
-            const canvas = document.getElementById('flappybird-board');
-            const context = canvas.getContext('2d');
+            const canvas = document.getElementById('flappybird-board'); const context = canvas.getContext('2d');
             const scoreEl = document.getElementById('flappybird-score');
             let bird, pipes, score, gravity = 0.5, lift = -10, pipeGap = 100, pipeSpeed = 2;
             function initGame() {
-                bird = { x: 50, y: 150, velocity: 0, radius: 15 };
-                pipes = []; score = 0;
+                bird = { x: 50, y: 150, velocity: 0, radius: 15 }; pipes = []; score = 0;
                 scoreEl.textContent = `Score: 0`;
                 pipes.push({ x: canvas.width, top: 0, bottom: Math.random() * (canvas.height / 2) + 50 });
                 if (activeGameLoop) cancelAnimationFrame(activeGameLoop);
@@ -1045,9 +1008,7 @@
                 for (let i = pipes.length - 1; i >= 0; i--) {
                     pipes[i].x -= pipeSpeed;
                     if (pipes[i].x + 50 < 0) { pipes.splice(i, 1); }
-                    if ( bird.x + bird.radius > pipes[i].x && bird.x - bird.radius < pipes[i].x + 50 && (bird.y - bird.radius < pipes[i].bottom || bird.y + bird.radius > pipes[i].bottom + pipeGap) ) {
-                        return gameOver();
-                    }
+                    if ( bird.x + bird.radius > pipes[i].x && bird.x - bird.radius < pipes[i].x + 50 && (bird.y - bird.radius < pipes[i].bottom || bird.y + bird.radius > pipes[i].bottom + pipeGap) ) { return gameOver(); }
                     if (pipes[i].x === bird.x - 50) { score++; scoreEl.textContent = `Score: ${score}`; }
                 }
                 if (pipes.length === 0 || pipes[pipes.length - 1].x < canvas.width - 150) {
@@ -1057,11 +1018,7 @@
             }
             function gameLoop() { update(); draw(); activeGameLoop = requestAnimationFrame(gameLoop); }
             function birdJump() { bird.velocity = lift; }
-            function gameOver() {
-                cancelAnimationFrame(activeGameLoop); activeGameLoop = null;
-                showGameOver("GAME OVER", `Score: ${score}`, initGame);
-            }
-            // Séparation des listeners
+            function gameOver() { cancelAnimationFrame(activeGameLoop); activeGameLoop = null; showGameOver("GAME OVER", `Score: ${score}`, initGame); }
             activeKeyListener = (e) => { if (e.key === ' ') { e.preventDefault(); birdJump(); } };
             activeMouseListener = (e) => { e.preventDefault(); birdJump(); };
             document.addEventListener('keydown', activeKeyListener);
@@ -1069,7 +1026,7 @@
             initGame();
         }
 
-        // --- NOUVEAU JEU : 2048 ---
+        // --- MOTEUR DE JEU : 2048 ---
         window.init2048 = () => {
             const container = document.getElementById('game-2048-container');
             container.innerHTML = `
@@ -1079,151 +1036,81 @@
                     <div id="2048-board"></div>
                     <p class="game-instructions">Utilisez les flèches pour fusionner les tuiles.</p>
                 </div>`;
-            
-            const boardEl = document.getElementById('2048-board');
-            const scoreEl = document.getElementById('2048-score');
+            const boardEl = document.getElementById('2048-board'); const scoreEl = document.getElementById('2048-score');
             let grid, score;
-
             function initGame() {
-                grid = Array(4).fill(null).map(() => Array(4).fill(0));
-                score = 0;
-                addRandomTile();
-                addRandomTile();
+                grid = Array(4).fill(null).map(() => Array(4).fill(0)); score = 0;
+                addRandomTile(); addRandomTile();
                 drawBoard();
             }
-
             function drawBoard() {
-                scoreEl.textContent = score;
-                boardEl.innerHTML = '';
+                scoreEl.textContent = score; boardEl.innerHTML = '';
                 for (let r = 0; r < 4; r++) {
                     for (let c = 0; c < 4; c++) {
-                        const value = grid[r][c];
-                        const tile = document.createElement('div');
+                        const value = grid[r][c]; const tile = document.createElement('div');
                         tile.className = 'tile-2048';
-                        if (value > 0) {
-                            tile.textContent = value;
-                            tile.dataset.value = value;
-                        }
+                        if (value > 0) { tile.textContent = value; tile.dataset.value = value; }
                         boardEl.appendChild(tile);
                     }
                 }
             }
-
             function addRandomTile() {
                 let emptyTiles = [];
-                for (let r = 0; r < 4; r++) {
-                    for (let c = 0; c < 4; c++) {
-                        if (grid[r][c] === 0) emptyTiles.push({ r, c });
-                    }
-                }
+                for (let r = 0; r < 4; r++) { for (let c = 0; c < 4; c++) { if (grid[r][c] === 0) emptyTiles.push({ r, c }); } }
                 if (emptyTiles.length > 0) {
                     let { r, c } = emptyTiles[Math.floor(Math.random() * emptyTiles.length)];
                     grid[r][c] = Math.random() < 0.9 ? 2 : 4;
                 }
             }
-
             function slideAndMerge(row) {
-                // 1. "Slide" : [0, 2, 0, 2] -> [2, 2, 0, 0]
-                let newRow = row.filter(val => val);
-                let missing = 4 - newRow.length;
-                let zeros = Array(missing).fill(0);
+                let newRow = row.filter(val => val); let missing = 4 - newRow.length; let zeros = Array(missing).fill(0);
                 newRow = newRow.concat(zeros);
-
-                // 2. "Merge" : [2, 2, 0, 0] -> [4, 0, 0, 0]
                 for (let i = 0; i < 3; i++) {
-                    if (newRow[i] > 0 && newRow[i] === newRow[i + 1]) {
-                        newRow[i] *= 2;
-                        score += newRow[i];
-                        newRow[i + 1] = 0;
-                    }
+                    if (newRow[i] > 0 && newRow[i] === newRow[i + 1]) { newRow[i] *= 2; score += newRow[i]; newRow[i + 1] = 0; }
                 }
-
-                // 3. "Slide" again : [4, 0, 2, 2] -> [4, 2, 2, 0]
-                newRow = newRow.filter(val => val);
-                missing = 4 - newRow.length;
-                zeros = Array(missing).fill(0);
+                newRow = newRow.filter(val => val); missing = 4 - newRow.length; zeros = Array(missing).fill(0);
                 newRow = newRow.concat(zeros);
-                
                 return newRow;
             }
-
             function rotateGrid(grid) {
                 let newGrid = Array(4).fill(null).map(() => Array(4).fill(0));
-                for (let r = 0; r < 4; r++) {
-                    for (let c = 0; c < 4; c++) {
-                        newGrid[c][3 - r] = grid[r][c];
-                    }
-                }
+                for (let r = 0; r < 4; r++) { for (let c = 0; c < 4; c++) { newGrid[c][3 - r] = grid[r][c]; } }
                 return newGrid;
             }
-
             function move(direction) {
                 let moved = false;
                 for (let r = 0; r < 4; r++) {
-                    let row = grid[r];
-                    let newRow = slideAndMerge(row);
-                    if (JSON.stringify(row) !== JSON.stringify(newRow)) {
-                        moved = true;
-                    }
+                    let row = grid[r]; let newRow = slideAndMerge(row);
+                    if (JSON.stringify(row) !== JSON.stringify(newRow)) { moved = true; }
                     grid[r] = newRow;
-                }
-                return moved;
+                } return moved;
             }
-
             function handleMove(e) {
-                e.preventDefault();
-                let moved = false;
+                e.preventDefault(); let moved = false;
                 switch (e.key) {
-                    case 'ArrowLeft':
-                        moved = move('left');
-                        break;
-                    case 'ArrowRight':
-                        grid = grid.map(row => row.reverse());
-                        moved = move('right');
-                        grid = grid.map(row => row.reverse());
-                        break;
-                    case 'ArrowUp':
-                        grid = rotateGrid(grid); // Rotate 90 deg right
-                        moved = move('up');
-                        grid = rotateGrid(rotateGrid(rotateGrid(grid))); // Rotate 270 deg
-                        break;
-                    case 'ArrowDown':
-                        grid = rotateGrid(rotateGrid(rotateGrid(grid))); // Rotate 270 deg
-                        moved = move('down');
-                        grid = rotateGrid(grid); // Rotate 90 deg
-                        break;
+                    case 'ArrowLeft': moved = move('left'); break;
+                    case 'ArrowRight': grid = grid.map(row => row.reverse()); moved = move('right'); grid = grid.map(row => row.reverse()); break;
+                    case 'ArrowUp': grid = rotateGrid(grid); moved = move('up'); grid = rotateGrid(rotateGrid(rotateGrid(grid))); break;
+                    case 'ArrowDown': grid = rotateGrid(rotateGrid(rotateGrid(grid))); moved = move('down'); grid = rotateGrid(grid); break;
                 }
-                if (moved) {
-                    addRandomTile();
-                    drawBoard();
-                    checkGameOver();
-                }
+                if (moved) { addRandomTile(); drawBoard(); checkGameOver(); }
             }
-
             function checkGameOver() {
-                // Y a-t-il des cases vides ?
-                for (let r = 0; r < 4; r++) {
-                    for (let c = 0; c < 4; c++) {
-                        if (grid[r][c] === 0) return;
-                    }
-                }
-                // Y a-t-il des fusions possibles ?
+                for (let r = 0; r < 4; r++) { for (let c = 0; c < 4; c++) { if (grid[r][c] === 0) return; } }
                 for (let r = 0; r < 4; r++) {
                     for (let c = 0; c < 4; c++) {
                         if (c < 3 && grid[r][c] === grid[r][c + 1]) return;
                         if (r < 3 && grid[r][c] === grid[r + 1][c]) return;
                     }
                 }
-                // Game Over
                 showGameOver("GAME OVER", `Score final: ${score}`, initGame);
             }
-
             activeKeyListener = handleMove;
             document.addEventListener('keydown', activeKeyListener);
             initGame();
         }
 
-        // --- NOUVEAU JEU : PUISSANCE 4 ---
+        // --- MOTEUR DE JEU : PUISSANCE 4 ---
         window.initConnectfour = () => {
             const container = document.getElementById('game-connectfour-container');
             container.innerHTML = `
@@ -1232,30 +1119,22 @@
                     <div id="connectfour-board"></div>
                     <div id="connectfour-message" class="score-container"></div>
                 </div>`;
-            
-            const boardEl = document.getElementById('connectfour-board');
-            const messageEl = document.getElementById('connectfour-message');
+            const boardEl = document.getElementById('connectfour-board'); const messageEl = document.getElementById('connectfour-message');
             const ROWS = 6, COLS = 7;
             let board, currentPlayer, gameActive;
-
             function initGame() {
                 board = Array(ROWS).fill(null).map(() => Array(COLS).fill(0));
-                currentPlayer = 1; // 1 = Joueur, 2 = IA
-                gameActive = true;
+                currentPlayer = 1; gameActive = true;
                 messageEl.textContent = "À vous de jouer (Rouge)";
                 drawBoard();
             }
-
             function drawBoard() {
                 boardEl.innerHTML = '';
                 for (let c = 0; c < COLS; c++) {
-                    const colEl = document.createElement('div');
-                    colEl.className = 'connectfour-col';
-                    colEl.dataset.col = c;
+                    const colEl = document.createElement('div'); colEl.className = 'connectfour-col'; colEl.dataset.col = c;
                     colEl.addEventListener('click', handleColumnClick);
                     for (let r = 0; r < ROWS; r++) {
-                        const cell = document.createElement('div');
-                        cell.className = 'connectfour-cell';
+                        const cell = document.createElement('div'); cell.className = 'connectfour-cell';
                         if (board[r][c] === 1) cell.classList.add('player1');
                         if (board[r][c] === 2) cell.classList.add('player2');
                         colEl.appendChild(cell);
@@ -1263,86 +1142,43 @@
                     boardEl.appendChild(colEl);
                 }
             }
-
-            function handleColumnClick(e) {
-                if (!gameActive || currentPlayer === 2) return;
-                const col = e.currentTarget.dataset.col;
-                makeMove(parseInt(col), 1);
-            }
-
+            function handleColumnClick(e) { if (!gameActive || currentPlayer === 2) return; const col = e.currentTarget.dataset.col; makeMove(parseInt(col), 1); }
             function makeMove(col, player) {
                 for (let r = ROWS - 1; r >= 0; r--) {
                     if (board[r][col] === 0) {
-                        board[r][col] = player;
-                        drawBoard();
-                        
+                        board[r][col] = player; drawBoard();
                         if (checkWin(player)) {
-                            gameActive = false;
-                            const winner = player === 1 ? "VOUS AVEZ" : "L'IA A";
+                            gameActive = false; const winner = player === 1 ? "VOUS AVEZ" : "L'IA A";
                             showGameOver(`${winner} GAGNÉ !`, "Félicitations !", initGame);
                         } else if (checkDraw()) {
-                            gameActive = false;
-                            showGameOver("ÉGALITÉ", "Aucun vainqueur.", initGame);
+                            gameActive = false; showGameOver("ÉGALITÉ", "Aucun vainqueur.", initGame);
                         } else {
                             currentPlayer = player === 1 ? 2 : 1;
                             messageEl.textContent = currentPlayer === 1 ? "À vous de jouer (Rouge)" : "L'IA réfléchit... (Jaune)";
-                            if (currentPlayer === 2) {
-                                setTimeout(aiTurn, 500);
-                            }
+                            if (currentPlayer === 2) { setTimeout(aiTurn, 500); }
                         }
                         return;
                     }
                 }
             }
-
             function aiTurn() {
                 if (!gameActive) return;
                 let availableCols = [];
-                for (let c = 0; c < COLS; c++) {
-                    if (board[0][c] === 0) availableCols.push(c);
-                }
-                if (availableCols.length > 0) {
-                    const randomCol = availableCols[Math.floor(Math.random() * availableCols.length)];
-                    makeMove(randomCol, 2);
-                }
+                for (let c = 0; c < COLS; c++) { if (board[0][c] === 0) availableCols.push(c); }
+                if (availableCols.length > 0) { const randomCol = availableCols[Math.floor(Math.random() * availableCols.length)]; makeMove(randomCol, 2); }
             }
-
             function checkWin(player) {
-                // Vérif Horizontale
-                for (let r = 0; r < ROWS; r++) {
-                    for (let c = 0; c <= COLS - 4; c++) {
-                        if (board[r][c] === player && board[r][c+1] === player && board[r][c+2] === player && board[r][c+3] === player) return true;
-                    }
-                }
-                // Vérif Verticale
-                for (let c = 0; c < COLS; c++) {
-                    for (let r = 0; r <= ROWS - 4; r++) {
-                        if (board[r][c] === player && board[r+1][c] === player && board[r+2][c] === player && board[r+3][c] === player) return true;
-                    }
-                }
-                // Vérif Diagonale (bas-droite)
-                for (let r = 0; r <= ROWS - 4; r++) {
-                    for (let c = 0; c <= COLS - 4; c++) {
-                        if (board[r][c] === player && board[r+1][c+1] === player && board[r+2][c+2] === player && board[r+3][c+3] === player) return true;
-                    }
-                }
-                // Vérif Diagonale (haut-droite)
-                for (let r = 3; r < ROWS; r++) {
-                    for (let c = 0; c <= COLS - 4; c++) {
-                        if (board[r][c] === player && board[r-1][c+1] === player && board[r-2][c+2] === player && board[r-3][c+3] === player) return true;
-                    }
-                }
+                for (let r = 0; r < ROWS; r++) { for (let c = 0; c <= COLS - 4; c++) { if (board[r][c] === player && board[r][c+1] === player && board[r][c+2] === player && board[r][c+3] === player) return true; } }
+                for (let c = 0; c < COLS; c++) { for (let r = 0; r <= ROWS - 4; r++) { if (board[r][c] === player && board[r+1][c] === player && board[r+2][c] === player && board[r+3][c] === player) return true; } }
+                for (let r = 0; r <= ROWS - 4; r++) { for (let c = 0; c <= COLS - 4; c++) { if (board[r][c] === player && board[r+1][c+1] === player && board[r+2][c+2] === player && board[r+3][c+3] === player) return true; } }
+                for (let r = 3; r < ROWS; r++) { for (let c = 0; c <= COLS - 4; c++) { if (board[r][c] === player && board[r-1][c+1] === player && board[r-2][c+2] === player && board[r-3][c+3] === player) return true; } }
                 return false;
             }
-
-            function checkDraw() {
-                return board[0].every(cell => cell !== 0); // Si la rangée du haut est pleine
-            }
-
+            function checkDraw() { return board[0].every(cell => cell !== 0); }
             initGame();
         }
 
-        // --- NOUVEAU JEU : PENDU ---
+        // --- MOTEUR DE JEU : PENDU ---
         window.initHangman = () => {
             const container = document.getElementById('game-hangman-container');
             container.innerHTML = `
@@ -1352,81 +1188,50 @@
                     <div id="hangman-word"></div>
                     <div id="hangman-keyboard"></div>
                 </div>`;
-            
-            const wordEl = document.getElementById('hangman-word');
-            const keyboardEl = document.getElementById('hangman-keyboard');
+            const wordEl = document.getElementById('hangman-word'); const keyboardEl = document.getElementById('hangman-keyboard');
             const attemptsEl = document.getElementById('hangman-attempts');
-
             const wordList = ["ARCADE", "JAVASCRIPT", "TETRIS", "SNAKE", "PONG", "DEVELOPPEUR", "ORDINATEUR", "PROGRAMME", "NAVIGATEUR"];
             let selectedWord, guessedLetters, wrongAttempts;
-
             function initGame() {
                 selectedWord = wordList[Math.floor(Math.random() * wordList.length)];
-                guessedLetters = Array(selectedWord.length).fill('_');
-                wrongAttempts = 6;
-                drawWord();
-                drawKeyboard();
-                updateAttempts();
+                guessedLetters = Array(selectedWord.length).fill('_'); wrongAttempts = 6;
+                drawWord(); drawKeyboard(); updateAttempts();
             }
-
             function drawWord() {
                 wordEl.innerHTML = '';
                 guessedLetters.forEach(letter => {
-                    const letterEl = document.createElement('div');
-                    letterEl.className = 'hangman-letter';
+                    const letterEl = document.createElement('div'); letterEl.className = 'hangman-letter';
                     letterEl.textContent = letter === '_' ? '' : letter;
                     wordEl.appendChild(letterEl);
                 });
             }
-
             function drawKeyboard() {
                 keyboardEl.innerHTML = '';
-                for (let i = 65; i <= 90; i++) { // A-Z
-                    const letter = String.fromCharCode(i);
-                    const key = document.createElement('button');
-                    key.className = 'hangman-key';
-                    key.textContent = letter;
+                for (let i = 65; i <= 90; i++) {
+                    const letter = String.fromCharCode(i); const key = document.createElement('button');
+                    key.className = 'hangman-key'; key.textContent = letter;
                     key.addEventListener('click', () => handleGuess(letter));
                     keyboardEl.appendChild(key);
                 }
             }
-
             function handleGuess(letter) {
                 const key = Array.from(keyboardEl.children).find(k => k.textContent === letter);
                 if (key.disabled) return;
                 key.disabled = true;
-
                 if (selectedWord.includes(letter)) {
-                    for (let i = 0; i < selectedWord.length; i++) {
-                        if (selectedWord[i] === letter) {
-                            guessedLetters[i] = letter;
-                        }
-                    }
-                } else {
-                    wrongAttempts--;
-                    updateAttempts();
-                }
-                
-                drawWord();
-                checkGameState();
+                    for (let i = 0; i < selectedWord.length; i++) { if (selectedWord[i] === letter) { guessedLetters[i] = letter; } }
+                } else { wrongAttempts--; updateAttempts(); }
+                drawWord(); checkGameState();
             }
-
-            function updateAttempts() {
-                attemptsEl.textContent = `Tentatives restantes: ${wrongAttempts}`;
-            }
-
+            function updateAttempts() { attemptsEl.textContent = `Tentatives restantes: ${wrongAttempts}`; }
             function checkGameState() {
-                if (guessedLetters.join('') === selectedWord) {
-                    showGameOver("VICTOIRE !", `Le mot était: ${selectedWord}`, initGame);
-                } else if (wrongAttempts <= 0) {
-                    showGameOver("GAME OVER", `Le mot était: ${selectedWord}`, initGame);
-                }
+                if (guessedLetters.join('') === selectedWord) { showGameOver("VICTOIRE !", `Le mot était: ${selectedWord}`, initGame); } 
+                else if (wrongAttempts <= 0) { showGameOver("GAME OVER", `Le mot était: ${selectedWord}`, initGame); }
             }
-
             initGame();
         }
 
-        // --- NOUVEAU JEU : MEMORY ---
+        // --- MOTEUR DE JEU : MEMORY ---
         window.initMemory = () => {
             const container = document.getElementById('game-memory-container');
             container.innerHTML = `
@@ -1435,35 +1240,21 @@
                     <div id="memory-moves" class="score-container">Coups: 0</div>
                     <div id="memory-grid"></div>
                 </div>`;
-            
-            const gridEl = document.getElementById('memory-grid');
-            const movesEl = document.getElementById('memory-moves');
-            
-            // 8 paires
-            const icons = [
-                "bi-bug-fill", "bi-joystick", "bi-bricks", "bi-suit-club-fill", 
-                "bi-cloud-fill", "bi-flag-fill", "bi-hash", "bi-suit-spade-fill"
-            ];
+            const gridEl = document.getElementById('memory-grid'); const movesEl = document.getElementById('memory-moves');
+            const icons = [ "bi-bug-fill", "bi-joystick", "bi-bricks", "bi-suit-club-fill", "bi-cloud-fill", "bi-flag-fill", "bi-hash", "bi-suit-spade-fill" ];
             let cards, flippedCards, matchedPairs, moves, gameActive;
-
             function initGame() {
                 let cardSet = [...icons, ...icons];
                 cards = cardSet.sort(() => 0.5 - Math.random());
-                flippedCards = [];
-                matchedPairs = 0;
-                moves = 0;
-                gameActive = true;
+                flippedCards = []; matchedPairs = 0; moves = 0; gameActive = true;
                 movesEl.textContent = "Coups: 0";
                 drawGrid();
             }
-
             function drawGrid() {
                 gridEl.innerHTML = '';
                 cards.forEach((icon, index) => {
-                    const card = document.createElement('div');
-                    card.className = 'memory-card';
-                    card.dataset.index = index;
-                    card.dataset.icon = icon;
+                    const card = document.createElement('div'); card.className = 'memory-card';
+                    card.dataset.index = index; card.dataset.icon = icon;
                     card.innerHTML = `
                         <div class="card-face card-front"></div>
                         <div class="card-face card-back"><i class="bi ${icon}"></i></div>
@@ -1472,38 +1263,371 @@
                     gridEl.appendChild(card);
                 });
             }
-
             function handleCardClick(e) {
                 const card = e.currentTarget;
                 if (!gameActive || card.classList.contains('is-flipped') || card.classList.contains('is-matched')) return;
-
                 card.classList.add('is-flipped');
                 flippedCards.push(card);
-
                 if (flippedCards.length === 2) {
-                    gameActive = false;
-                    moves++;
+                    gameActive = false; moves++;
                     movesEl.textContent = `Coups: ${moves}`;
                     setTimeout(checkForMatch, 1000);
                 }
             }
-
             function checkForMatch() {
                 const [card1, card2] = flippedCards;
                 if (card1.dataset.icon === card2.dataset.icon) {
-                    card1.classList.add('is-matched');
-                    card2.classList.add('is-matched');
+                    card1.classList.add('is-matched'); card2.classList.add('is-matched');
                     matchedPairs++;
-                    if (matchedPairs === icons.length) {
-                        showGameOver("VICTOIRE !", `Terminé en ${moves} coups !`, initGame);
+                    if (matchedPairs === icons.length) { showGameOver("VICTOIRE !", `Terminé en ${moves} coups !`, initGame); }
+                } else {
+                    card1.classList.remove('is-flipped'); card2.classList.remove('is-flipped');
+                }
+                flippedCards = []; gameActive = true;
+            }
+            initGame();
+        }
+
+        // --- NOUVEAU JEU : DÉMINEUR ---
+        window.initMinesweeper = () => {
+            const container = document.getElementById('game-minesweeper-container');
+            const ROWS = 10, COLS = 10, MINES = 15;
+            container.innerHTML = `
+                <div id="game-minesweeper">
+                    <h2 class="game-title">DÉMINEUR</h2>
+                    <div id="minesweeper-info">Mines restantes: <span id="minesweeper-mines">${MINES}</span></div>
+                    <div id="minesweeper-board"></div>
+                    <p class="game-instructions">Clic gauche: Révéler | Clic droit: Marquer</p>
+                </div>`;
+            
+            const boardEl = document.getElementById('minesweeper-board');
+            const minesEl = document.getElementById('minesweeper-mines');
+            let board, gameActive, mineCount;
+
+            function initGame() {
+                board = Array(ROWS).fill(null).map(() => Array(COLS).fill(null).map(() => ({
+                    isMine: false, isRevealed: false, isFlagged: false, neighborCount: 0
+                })));
+                gameActive = true;
+                mineCount = MINES;
+                minesEl.textContent = mineCount;
+                
+                // Placer les mines
+                let minesPlaced = 0;
+                while (minesPlaced < MINES) {
+                    let r = Math.floor(Math.random() * ROWS);
+                    let c = Math.floor(Math.random() * COLS);
+                    if (!board[r][c].isMine) {
+                        board[r][c].isMine = true;
+                        minesPlaced++;
+                    }
+                }
+                
+                // Compter les voisins
+                for (let r = 0; r < ROWS; r++) {
+                    for (let c = 0; c < COLS; c++) {
+                        if (board[r][c].isMine) continue;
+                        let count = 0;
+                        for (let dr = -1; dr <= 1; dr++) {
+                            for (let dc = -1; dc <= 1; dc++) {
+                                if (dr === 0 && dc === 0) continue;
+                                const nr = r + dr, nc = c + dc;
+                                if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && board[nr][nc].isMine) {
+                                    count++;
+                                }
+                            }
+                        }
+                        board[r][c].neighborCount = count;
+                    }
+                }
+                
+                drawBoard();
+            }
+
+            function drawBoard() {
+                boardEl.innerHTML = '';
+                boardEl.style.gridTemplateColumns = `repeat(${COLS}, 30px)`;
+                for (let r = 0; r < ROWS; r++) {
+                    for (let c = 0; c < COLS; c++) {
+                        const cell = document.createElement('div');
+                        cell.className = 'minesweeper-cell';
+                        cell.dataset.r = r; cell.dataset.c = c;
+                        
+                        const cellData = board[r][c];
+                        if (cellData.isRevealed) {
+                            cell.classList.add('revealed');
+                            if (cellData.isMine) {
+                                cell.classList.add('mine');
+                                cell.innerHTML = '<i class="bi bi-person-fill-exclamation"></i>';
+                            } else if (cellData.neighborCount > 0) {
+                                cell.textContent = cellData.neighborCount;
+                                cell.dataset.count = cellData.neighborCount;
+                            }
+                        } else if (cellData.isFlagged) {
+                            cell.classList.add('flagged');
+                            cell.innerHTML = '<i class="bi bi-flag-fill"></i>';
+                        }
+                        
+                        cell.addEventListener('click', () => handleCellClick(r, c));
+                        cell.addEventListener('contextmenu', (e) => {
+                            e.preventDefault();
+                            handleCellRightClick(r, c);
+                        });
+                        boardEl.appendChild(cell);
+                    }
+                }
+            }
+
+            function handleCellClick(r, c) {
+                if (!gameActive || board[r][c].isRevealed || board[r][c].isFlagged) return;
+                
+                if (board[r][c].isMine) {
+                    gameOver(false);
+                    return;
+                }
+                
+                revealCell(r, c);
+                checkWin();
+            }
+
+            function handleCellRightClick(r, c) {
+                if (!gameActive || board[r][c].isRevealed) return;
+                
+                board[r][c].isFlagged = !board[r][c].isFlagged;
+                mineCount += board[r][c].isFlagged ? -1 : 1;
+                minesEl.textContent = mineCount;
+                drawBoard();
+            }
+
+            function revealCell(r, c) {
+                if (r < 0 || r >= ROWS || c < 0 || c >= COLS || board[r][c].isRevealed || board[r][c].isFlagged) return;
+                
+                board[r][c].isRevealed = true;
+                
+                if (board[r][c].neighborCount === 0 && !board[r][c].isMine) {
+                    // Flood fill
+                    for (let dr = -1; dr <= 1; dr++) {
+                        for (let dc = -1; dc <= 1; dc++) {
+                            if (dr === 0 && dc === 0) continue;
+                            revealCell(r + dr, c + dc);
+                        }
+                    }
+                }
+            }
+
+            function gameOver(isWin) {
+                gameActive = false;
+                // Révéler toutes les mines
+                for (let r = 0; r < ROWS; r++) {
+                    for (let c = 0; c < COLS; c++) {
+                        if (board[r][c].isMine) board[r][c].isRevealed = true;
+                    }
+                }
+                drawBoard();
+                if (isWin) {
+                    showGameOver("VICTOIRE !", "Vous avez trouvé toutes les mines !", initGame);
+                } else {
+                    showGameOver("GAME OVER", "Vous avez cliqué sur une mine...", initGame);
+                }
+            }
+
+            function checkWin() {
+                let revealedCount = 0;
+                for (let r = 0; r < ROWS; r++) {
+                    for (let c = 0; c < COLS; c++) {
+                        if (board[r][c].isRevealed) revealedCount++;
+                    }
+                }
+                if (revealedCount === ROWS * COLS - MINES) {
+                    gameOver(true);
+                }
+            }
+            
+            // Attacher les listeners de souris au document pour les enlever dans cleanUp()
+            activeMouseListener = (e) => {
+                const cell = e.target.closest('.minesweeper-cell');
+                if (cell) {
+                    const r = parseInt(cell.dataset.r);
+                    const c = parseInt(cell.dataset.c);
+                    if (e.type === 'click') {
+                        handleCellClick(r, c);
+                    } else if (e.type === 'contextmenu') {
+                        e.preventDefault();
+                        handleCellRightClick(r, c);
+                    }
+                }
+            };
+            
+            // Démineur n'utilise pas le listener global, il attache les siens
+            // mais on doit s'assurer que cleanUp() fonctionne
+            // Mieux: utiliser le listener global
+            document.addEventListener('click', activeMouseListener);
+            document.addEventListener('contextmenu', activeMouseListener);
+            
+            initGame();
+        }
+
+        // --- NOUVEAU JEU : BLACKJACK ---
+        window.initBlackjack = () => {
+            const container = document.getElementById('game-blackjack-container');
+            container.innerHTML = `
+                <div id="game-blackjack">
+                    <h2 class="game-title">BLACKJACK</h2>
+                    
+                    <div id="blackjack-dealer-hand-container">
+                        <h4 id="blackjack-dealer-score" class="score-container" style="font-family: var(--font-pixel); font-size: 1rem;">Main du Croupier: ?</h4>
+                        <div id="blackjack-dealer-hand" class="blackjack-hand"></div>
+                    </div>
+                    
+                    <div id="blackjack-player-hand-container">
+                        <h4 id="blackjack-player-score" class="score-container" style="font-family: var(--font-pixel); font-size: 1rem;">Votre Main: 0</h4>
+                        <div id="blackjack-player-hand" class="blackjack-hand"></div>
+                    </div>
+
+                    <div id="blackjack-controls">
+                        <button id="blackjack-hit-btn" class="game-btn">Tirer (Hit)</button>
+                        <button id="blackjack-stand-btn" class="game-btn">Rester (Stand)</button>
+                    </div>
+                    
+                    <div id="blackjack-message" class="score-container"></div>
+                </div>`;
+            
+            const playerHandEl = document.getElementById('blackjack-player-hand');
+            const dealerHandEl = document.getElementById('blackjack-dealer-hand');
+            const playerScoreEl = document.getElementById('blackjack-player-score');
+            const dealerScoreEl = document.getElementById('blackjack-dealer-score');
+            const messageEl = document.getElementById('blackjack-message');
+            const hitBtn = document.getElementById('blackjack-hit-btn');
+            const standBtn = document.getElementById('blackjack-stand-btn');
+
+            let deck, playerHand, dealerHand, gameActive;
+            const SUITS = ['♥', '♦', '♣', '♠'];
+            const RANKS = ['A', '2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K'];
+
+            function initGame() {
+                deck = createDeck();
+                playerHand = [drawCard(), drawCard()];
+                dealerHand = [drawCard(), drawCard()];
+                gameActive = true;
+                messageEl.textContent = "Tirer ou Rester ?";
+                toggleButtons(true);
+                drawHands();
+            }
+
+            function createDeck() {
+                let newDeck = [];
+                for (let suit of SUITS) {
+                    for (let rank of RANKS) {
+                        newDeck.push({ suit, rank });
+                    }
+                }
+                return newDeck.sort(() => Math.random() - 0.5);
+            }
+
+            function drawCard() {
+                if (deck.length === 0) deck = createDeck();
+                return deck.pop();
+            }
+
+            function drawHands() {
+                playerHandEl.innerHTML = '';
+                playerHand.forEach(card => playerHandEl.appendChild(createCardEl(card)));
+                playerScoreEl.textContent = `Votre Main: ${getHandScore(playerHand)}`;
+
+                dealerHandEl.innerHTML = '';
+                dealerHandEl.appendChild(createCardEl(dealerHand[0]));
+                dealerHandEl.appendChild(createCardEl(dealerHand[1], !gameActive));
+                dealerScoreEl.textContent = `Main du Croupier: ${gameActive ? getCardValue(dealerHand[0]) + ' + ?' : getHandScore(dealerHand)}`;
+            }
+
+            function createCardEl(card, isHidden = false) {
+                const cardEl = document.createElement('div');
+                if (isHidden) {
+                    cardEl.className = 'blackjack-card blackjack-card-hidden';
+                    return cardEl;
+                }
+                cardEl.className = `blackjack-card ${card.suit === '♥' || card.suit === '♦' ? 'red' : ''}`;
+                cardEl.innerHTML = `<span class="blackjack-card-value">${card.rank}</span><span class="blackjack-card-suit">${card.suit}</span>`;
+                return cardEl;
+            }
+
+            function getCardValue(card) {
+                if (['T', 'J', 'Q', 'K'].includes(card.rank)) return 10;
+                if (card.rank === 'A') return 11;
+                return parseInt(card.rank);
+            }
+
+            function getHandScore(hand) {
+                let score = 0;
+                let aceCount = 0;
+                for (let card of hand) {
+                    score += getCardValue(card);
+                    if (card.rank === 'A') aceCount++;
+                }
+                while (score > 21 && aceCount > 0) {
+                    score -= 10;
+                    aceCount--;
+                }
+                return score;
+            }
+
+            function handleHit() {
+                if (!gameActive) return;
+                playerHand.push(drawCard());
+                drawHands();
+                const score = getHandScore(playerHand);
+                if (score > 21) {
+                    endGame("Vous avez dépassé 21 ! C'est perdu.", false);
+                }
+            }
+
+            function handleStand() {
+                if (!gameActive) return;
+                gameActive = false;
+                toggleButtons(false);
+                dealerTurn();
+            }
+
+            function dealerTurn() {
+                drawHands();
+                let dealerScore = getHandScore(dealerHand);
+                
+                if (dealerScore > 21) {
+                    endGame("Le croupier dépasse 21 ! Vous gagnez.", true);
+                } else if (dealerScore >= 17) {
+                    // Le croupier s'arrête
+                    const playerScore = getHandScore(playerHand);
+                    if (playerScore > dealerScore) {
+                        endGame("Vous gagnez !", true);
+                    } else if (playerScore < dealerScore) {
+                        endGame("Le croupier gagne.", false);
+                    } else {
+                        endGame("Égalité !", null);
                     }
                 } else {
-                    card1.classList.remove('is-flipped');
-                    card2.classList.remove('is-flipped');
+                    // Le croupier tire
+                    dealerHand.push(drawCard());
+                    setTimeout(dealerTurn, 1000);
                 }
-                flippedCards = [];
-                gameActive = true;
             }
+
+            function toggleButtons(enabled) {
+                hitBtn.disabled = !enabled;
+                standBtn.disabled = !enabled;
+            }
+
+            function endGame(msg, playerWon) {
+                gameActive = false;
+                toggleButtons(false);
+                messageEl.textContent = msg;
+                drawHands(); // Révèle la carte cachée
+                
+                let title = playerWon ? "VICTOIRE !" : (playerWon === false ? "GAME OVER" : "ÉGALITÉ");
+                showGameOver(title, msg, initGame);
+            }
+
+            hitBtn.addEventListener('click', handleHit);
+            standBtn.addEventListener('click', handleStand);
 
             initGame();
         }
@@ -1525,8 +1649,6 @@
         }
 
         window.initPacman = createComingSoon('Pac-Man', 'bi bi-joystick');
-        window.initMinesweeper = createComingSoon('Démineur', 'bi bi-flag-fill');
-        window.initBlackjack = createComingSoon('Blackjack', 'bi bi-suit-spade-fill');
 
     });
     </script>
